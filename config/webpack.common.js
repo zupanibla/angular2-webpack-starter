@@ -13,6 +13,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
+const ProvidePlugin = webpack.ProvidePlugin;
 
 /*
  * Webpack Constants
@@ -171,7 +172,12 @@ module.exports = {
       {
         test: /\.(jpg|png|gif)$/,
         loader: 'file'
-      }
+      },
+
+      { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass'] },
+      { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+      // Bootstrap 4
+      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
     ]
 
   },
@@ -254,6 +260,12 @@ module.exports = {
       headTags: require('./head-config.common')
     }),
 
+    // jQuery
+    new ProvidePlugin({
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
+    })
   ],
 
   /*
@@ -270,5 +282,4 @@ module.exports = {
     clearImmediate: false,
     setImmediate: false
   }
-
 };

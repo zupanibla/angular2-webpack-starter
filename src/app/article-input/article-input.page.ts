@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-// import { RtfInputComponent } from './components/rtf-input.component';
+import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 
 @Component({ // TODO lepsi template
 	template: `
@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
 	                    <small>Inovativna rešitev za domače naloge pri angleščini</small>
 	                    </h1>
 	                </div>
+	                <rtf-input (submit)="handleRtfInput($event)"></rtf-input>
 	            </div>
 	        </div>
 	        <div class="col-md-2">
@@ -29,8 +30,14 @@ import { Component } from '@angular/core';
 	    </footer>
 	`,
 	styleUrls: ['./styles/article-input.style.css'],
-	// directives: [RtfInputComponent]
+	directives: [RtfInputComponent]
 })
 export class ArticleInputPage {
+	
 	constructor() {}
+
+	private handleRtfInput(rtf: RtfData) {
+		console.log('asdfasdf');
+		console.log(rtf);
+	}
 }

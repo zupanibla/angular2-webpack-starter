@@ -1,11 +1,11 @@
-import { Routes, RouterModule } from '@angular/router';
-import { WordMarker } from './word-marker';
+import { Routes } from '@angular/router';
 
-import { DataResolver } from './app.resolver';
-
+import { ArticleInputPage } from './article-input';
+import { WordMarkerPage }   from './word-marker';
 
 export const ROUTES: Routes = [
-  { path: '',      component: WordMarker },
-  { path: 'word-marker',  component: WordMarker },
-  { path: '**',    component: WordMarker },
+  { path: '',              component: ArticleInputPage },
+  { path: 'article-input', component: ArticleInputPage },
+  { path: 'word-marker',   component: WordMarkerPage },
+  { path: '**',            component: ArticleInputPage },
 ];

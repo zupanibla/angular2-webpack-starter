@@ -1,1 +1,1 @@
-export * from './word-marker.component';
+export * from './word-marker.page';

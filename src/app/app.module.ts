@@ -14,7 +14,9 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
-import { WordMarker } from './word-marker';
+
+import { ArticleInputPage } from './article-input';
+import { WordMarkerPage }   from './word-marker';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -29,7 +31,8 @@ const APP_PROVIDERS = [
   bootstrap: [ App ],
   declarations: [
     App,
-    WordMarker
+    ArticleInputPage,
+    WordMarkerPage
   ],
   imports: [ // import Angular's modules
     BrowserModule,

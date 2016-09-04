@@ -175,6 +175,7 @@ module.exports = {
       },
 
       { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass'] },
+      { test: /\.sass$/, loaders: ['style', 'css', 'sass?indentedSyntax'] }, //nevem zakaj nemors met postcssja
       { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
       // Bootstrap 4
       { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }

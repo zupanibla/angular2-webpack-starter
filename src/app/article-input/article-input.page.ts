@@ -29,7 +29,7 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	        <a href="mailto:zupaniblaz@gmail.com">kontaktirajte nas</a>
 	    </footer>
 	`,
-	styleUrls: ['./styles/article-input.style.css'],
+	styleUrls: ['./styles/article-input.style.sass'],
 	directives: [RtfInputComponent]
 })
 export class ArticleInputPage {

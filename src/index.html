@@ -14,6 +14,9 @@
   <%= webpackConfig.htmlElements.headTags %>
   <% } %>
 
+  <!-- custom loading spinner TODO hardcoded -->
+  <link rel="stylesheet" href="/assets/styles/spinner.style.css">
+
   <!-- base url -->
   <base href="<%= webpackConfig.metadata.baseUrl %>">
 
@@ -23,7 +26,7 @@
 <body>
 
   <app>
-    Loading...
+    <div class="spinner"><span></span><span></span><span></span></div>
   </app>
 
   <!-- Google Analytics: change UA-71073175-1 to be your site's ID -->

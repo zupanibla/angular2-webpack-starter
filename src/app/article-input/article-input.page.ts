@@ -37,7 +37,6 @@ export class ArticleInputPage {
 	constructor() {}
 
 	private handleRtfInput(rtf: RtfData) {
-		console.log('asdfasdf');
-		console.log(rtf);
+		console.log('!handleRtfInput', rtf);
 	}
 }

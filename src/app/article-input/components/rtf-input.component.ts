@@ -51,6 +51,7 @@ export class RtfInputComponent {
 				this.inputField.nativeElement.focus();
 			}
 		}, 1);
+		e.preventDefault();
 	}
 
 	defaultPasteHandler(e: ClipboardEvent) {
@@ -58,6 +59,7 @@ export class RtfInputComponent {
 		let html = e.clipboardData.getData('text/html') || '<p>' + e.clipboardData.getData('text') + '</p>';
 		let text = e.clipboardData.getData('text');
 		this.submit.emit({html, text});
+		e.preventDefault();
 	}
 
 	keydownHandler(e: KeyboardEvent) {

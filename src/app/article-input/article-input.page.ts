@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { RtfInputComponent, RtfData } from './components/rtf-input.component';
+import { ArticleComponent } from './../word-marker/components/article.component'; //TODO temporary
 
 @Component({ // TODO lepsi template
 	template: `
@@ -16,6 +17,7 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	                    </h1>
 	                </div>
 	                <rtf-input (submit)="handleRtfInput($event)"></rtf-input>
+	                <article [html]="this.articleHtml"></article>
 	            </div>
 	        </div>
 	        <div class="col-md-2">
@@ -30,13 +32,15 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	    </footer>
 	`,
 	styleUrls: ['./styles/article-input.style.sass'],
-	directives: [RtfInputComponent]
+	directives: [RtfInputComponent, ArticleComponent]
 })
 export class ArticleInputPage {
-	
+	articleHtml: string = '';
+
 	constructor() {}
 
 	private handleRtfInput(rtf: RtfData) {
 		console.log('!handleRtfInput', rtf);
+		this.articleHtml = rtf.html;
 	}
 }

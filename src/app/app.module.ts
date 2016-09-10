@@ -17,6 +17,7 @@ import { AppState } from './app.service';
 
 import { ArticleInputPage } from './article-input';
 import { WordMarkerPage }   from './word-marker';
+import { MarkableWordComponent } from './word-marker/components/markable-word.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -32,7 +33,8 @@ const APP_PROVIDERS = [
   declarations: [
     App,
     ArticleInputPage,
-    WordMarkerPage
+    WordMarkerPage,
+    MarkableWordComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

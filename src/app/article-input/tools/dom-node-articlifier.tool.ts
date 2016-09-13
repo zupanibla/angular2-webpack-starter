@@ -1,7 +1,7 @@
 export class DOMNodeArticlifier {
 
 	articlify(domNode: Node): Article {
-		let wordNodes = [];
+		let wordContainers: Array<HTMLSpanElement> = [];
 		let textNodes: Array<Node> = this.getTextNodesUnder(domNode);
 		for (let node of textNodes) {
 			let text = node.textContent;
@@ -13,7 +13,7 @@ export class DOMNodeArticlifier {
 					while(i < text.length && this.isWordCharacter(text[i])) i++;
 					let wordNode = document.createElement('span');
 					wordNode.innerHTML = text.substring(startI, i);
-					wordNodes.push(wordNode);
+					wordContainers.push(wordNode);
 					newNode.appendChild(wordNode);
 				} else {
 					while(i < text.length && !this.isWordCharacter(text[i])) i++;
@@ -23,14 +23,15 @@ export class DOMNodeArticlifier {
 
 			node.parentNode.replaceChild(newNode, node);
 		}
-		return {domNode, wordNodes};
+		return {domNode, wordContainers};
 	}
 	
 	isWordCharacter(character: string) {
 		let charCode = character.charCodeAt(0);
-		return (95 < charCode && charCode < 123) ||
-			(64 < charCode && charCode < 91) ||
-			charCode == 45 || charCode == 39;
+		return  (95 < charCode && charCode < 123) ||                      // alphabet
+				(64 < charCode && charCode < 91)  ||                      // ALPHABET
+				charCode === 45  || charCode === 39  ||                   // ' ', '\n'
+				charCode === 269 || charCode === 353 || charCode === 382; // č, ž, š
 	}
 
 	getTextNodesUnder(node: Node): Array<Node> {
@@ -53,5 +54,5 @@ export class DOMNodeArticlifier {
 
 export interface Article {
 	domNode: Node;
-	wordNodes: Array<Node>;
+	wordContainers: Array<HTMLSpanElement>;
 }

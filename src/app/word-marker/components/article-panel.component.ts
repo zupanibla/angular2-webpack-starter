@@ -1,8 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 
 import { Article } from './../../shared/structures/article.structure';
-import { ArticleService } from './../services/article.service';
-import { DOMNodeArticlifier } from './../../article-input/tools/dom-node-articlifier.tool'; // TODO
 import { MarkableWordFactory } from './../factories/markable-word.factory';
 
 @Component({
@@ -21,7 +19,7 @@ import { MarkableWordFactory } from './../factories/markable-word.factory';
 		                                not supported by any browser */
 	}
 	`],
-	providers: [MarkableWordFactory, ArticleService]
+	providers: [MarkableWordFactory]
 })
 export class ArticlePanelComponent {
 	@Input() set article(val) { this.displayArticle(val); }

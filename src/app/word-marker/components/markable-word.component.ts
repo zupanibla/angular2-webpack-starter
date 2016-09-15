@@ -2,9 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'markable-word',
-	template: `
-	<span [class.marked]="marked" (click)="clickHandler($event)"><ng-content></ng-content></span>
-	`,
+	template: `<span [class.marked]="marked" (click)="clickHandler($event)"><ng-content></ng-content></span>`,
 	styles: [`
 	span {
 		cursor: pointer;

@@ -19,13 +19,15 @@ import { AdaptedMarkableWordComponent } from './word-marker/components/adapted-m
 import { ArticleInputPage } from './article-input';
 import { ArticleService } from './shared/services/article.service';
 import { DOMNodeArticlifier } from './article-input/tools/dom-node-articlifier.tool';
+import { MockArticleService } from './mocks/article.service.mock';
 import { WordMarkerPage }   from './word-marker';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  ArticleService,
+  // ArticleService,
+  { provide: ArticleService, useClass: MockArticleService },
   DOMNodeArticlifier
 ];
 

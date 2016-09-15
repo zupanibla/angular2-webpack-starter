@@ -15,14 +15,18 @@ import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
 
-import { ArticleInputPage } from './article-input';
-import { WordMarkerPage }   from './word-marker';
 import { AdaptedMarkableWordComponent } from './word-marker/components/adapted-markable-word.component';
+import { ArticleInputPage } from './article-input';
+import { ArticleService } from './shared/services/article.service';
+import { DOMNodeArticlifier } from './article-input/tools/dom-node-articlifier.tool';
+import { WordMarkerPage }   from './word-marker';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  ArticleService,
+  DOMNodeArticlifier
 ];
 
 /**

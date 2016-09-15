@@ -9,7 +9,7 @@ import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular
 	 (beforepaste)="iePasteHandler($event)"
 	 (paste)="defaultPasteHandler($event)"
 	 (keydown)="keydownHandler($event)"
-	 placeholder="Prilepi besedilo iz Worda ali iz spleta"
+	 placeholder="Prilepi besedilo iz Worda ali spleta"
 	 autofocus
 	></textarea>
 	<div
@@ -38,7 +38,6 @@ export class RtfInputComponent {
 	}
 
 	iePasteHandler(e: ClipboardEvent) {
-		console.log('!iePasteHandler in ArticleInput'); // LOG
 		this.contentEditableDiv.nativeElement.focus();
 		setTimeout(	() => {
 			if (this.contentEditableDiv.nativeElement.innerHTML) {
@@ -55,7 +54,6 @@ export class RtfInputComponent {
 	}
 
 	defaultPasteHandler(e: ClipboardEvent) {
-		console.log('!defaultPasteHandler in ArticleInput'); // LOG
 		let html = e.clipboardData.getData('text/html') || '<p>' + e.clipboardData.getData('text') + '</p>';
 		let text = e.clipboardData.getData('text');
 		this.submit.emit({html, text});

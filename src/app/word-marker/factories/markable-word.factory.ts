@@ -9,9 +9,9 @@ export class MarkableWordFactory {
 		this._componentFactory = cfr.resolveComponentFactory(AdaptedMarkableWordComponent);
 	}
 
-	create(node: HTMLElement) {
-		let content = node.innerHTML;
-		let componentRef = this._componentFactory.create(this._injector, [], node);
+	create(wordContainer: HTMLElement) {
+		let content = wordContainer.innerHTML;
+		let componentRef = this._componentFactory.create(this._injector, [], wordContainer);
 		componentRef.instance.content = content;
 		return componentRef.instance;
 	}

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ArticleService } from './../shared/services/article.service';
+import { ArticleFactory } from './factories/article.factory';
 
 import { RtfInputComponent, RtfData } from './components/rtf-input.component';
-import { ArticleComponent } from './../word-marker/components/article.component'; //TODO temporary
 
-@Component({ // TODO lepsi template
+@Component({ // TODO lepsi template, prestav template
 	template: `
 	    <div class="container">
 	        <div class="col-md-2">
@@ -17,7 +20,6 @@ import { ArticleComponent } from './../word-marker/components/article.component'
 	                    </h1>
 	                </div>
 	                <rtf-input (submit)="handleRtfInput($event)"></rtf-input>
-	                <article [html]="this.articleHtml"></article>
 	            </div>
 	        </div>
 	        <div class="col-md-2">
@@ -32,15 +34,17 @@ import { ArticleComponent } from './../word-marker/components/article.component'
 	    </footer>
 	`,
 	styleUrls: ['./styles/article-input.style.sass'],
-	directives: [RtfInputComponent, ArticleComponent]
+	directives: [RtfInputComponent],
+	providers: [ArticleFactory]
 })
 export class ArticleInputPage {
-	articleHtml: string = '';
 
-	constructor() {}
+	constructor(private _router: Router, private _articleFactory: ArticleFactory, private _articleService: ArticleService) {
+		console.log('!ArticleInputPage.constructor');
+	}
 
 	private handleRtfInput(rtf: RtfData) {
-		console.log('!handleRtfInput', rtf);
-		this.articleHtml = rtf.html;
+		this._articleService.currentArticle = this._articleFactory.create(rtf.html);
+		this._router.navigate(['/word-marker']);
 	}
 }

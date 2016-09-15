@@ -1,11 +1,13 @@
 import { Component, Input, ViewChild } from '@angular/core';
+
+import { Article } from './../../shared/structures/article.structure';
+import { ArticleService } from './../services/article.service';
 import { DOMNodeArticlifier } from './../../article-input/tools/dom-node-articlifier.tool'; // TODO
 import { MarkableWordFactory } from './../factories/markable-word.factory';
 
 @Component({
-	selector: 'article',
+	selector: 'article-panel',
 	template: `
-	<h3>ArticleComponent</h3>
 	<div #articleContainer></div>
 	`,
 	styles: [`
@@ -19,21 +21,23 @@ import { MarkableWordFactory } from './../factories/markable-word.factory';
 		                                not supported by any browser */
 	}
 	`],
-	providers: [MarkableWordFactory]
+	providers: [MarkableWordFactory, ArticleService]
 })
-export class ArticleComponent {
-	@Input() set html(val) { this.setHtml(val); }
+export class ArticlePanelComponent {
+	@Input() set article(val) { this.displayArticle(val); }
 	@ViewChild('articleContainer') _articleContainer;
 	
 	constructor(private _mwf: MarkableWordFactory) {}
 
-	private setHtml(html: string) {
-		let articleNode = document.createElement('div');
-		articleNode.innerHTML = html;
-		let article = new DOMNodeArticlifier().articlify(articleNode);
-		for (let wordContainer of article.wordContainers) {
+	displayArticle(article: Article) {
+		let htmlElement = document.createElement('div');
+		htmlElement.innerHTML = article.template;
+		let wordContainers = htmlElement.querySelectorAll('[data-word]');
+		
+		for (let wordContainer of (<any>wordContainers)) {
 			this._mwf.create(wordContainer);
 		}
-		this._articleContainer.nativeElement.appendChild(article.domNode);
+
+		this._articleContainer.nativeElement.appendChild(htmlElement);
 	}
 }

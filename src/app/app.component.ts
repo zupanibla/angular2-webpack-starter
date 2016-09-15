@@ -1,7 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { AppState } from './app.service';
-
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
@@ -13,6 +11,6 @@ import { AppState } from './app.service';
 })
 export class App {
 
-  constructor(public appState: AppState) {}
+  constructor() {}
 
 }

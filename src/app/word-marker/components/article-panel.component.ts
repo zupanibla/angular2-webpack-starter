@@ -28,12 +28,19 @@ export class ArticlePanelComponent {
 	constructor(private _mwf: MarkableWordFactory) {}
 
 	displayArticle(article: Article) {
-		let htmlElement = document.createElement('div');
+		let htmlElement       = document.createElement('div');
 		htmlElement.innerHTML = article.template;
-		let wordContainers = htmlElement.querySelectorAll('[data-word]');
+		let wordContainers    = htmlElement.querySelectorAll('[data-word]');
 		
 		for (let wordContainer of (<any>wordContainers)) {
-			this._mwf.create(wordContainer);
+			let wordId       = wordContainer.dataset['wordId'];
+			let markableWord = this._mwf.create(wordContainer);
+			
+			markableWord.mark.subscribe(marked=>{
+				if (marked)  article.selectedWordsIds.add(wordId);
+				else         article.selectedWordsIds.remove(wordId);
+				console.log(article.selectedWordsIds.toArray());
+			});
 		}
 
 		this._articleContainer.nativeElement.appendChild(htmlElement);

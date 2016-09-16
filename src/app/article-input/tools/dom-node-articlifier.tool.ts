@@ -6,6 +6,7 @@ export class DOMNodeArticlifier {
 	articlify(htmlElement: HTMLElement): {htmlElement: HTMLElement, wordContainers: Array<HTMLSpanElement>} {
 		let wordContainers: Array<HTMLSpanElement> = [];
 		let textNodes: Array<Node> = this._getTextNodesUnder(htmlElement);
+		let nextId = 0;
 		for (let node of textNodes) {
 			let text = node.textContent;
 			let newNode = document.createDocumentFragment();
@@ -16,6 +17,7 @@ export class DOMNodeArticlifier {
 					while(i < text.length && this._isWordCharacter(text[i])) i++;
 					let wordNode = document.createElement('span');
 					wordNode.dataset['word'] = text.substring(startI, i);
+					wordNode.dataset['wordId'] = String(nextId++);
 					wordNode.innerHTML = text.substring(startI, i);
 					wordContainers.push(wordNode);
 					newNode.appendChild(wordNode);
@@ -24,7 +26,6 @@ export class DOMNodeArticlifier {
 					newNode.appendChild(document.createTextNode(text.substring(startI, i)));
 				}
 			}
-
 			node.parentNode.replaceChild(newNode, node);
 		}
 		return {htmlElement, wordContainers};

@@ -10,7 +10,7 @@ export class MarkableWordFactory {
 	}
 
 	create(wordContainer: HTMLElement) {
-		let content = wordContainer.innerHTML;
+		let content      = wordContainer.innerHTML;
 		let componentRef = this._componentFactory.create(this._injector, [], wordContainer);
 		componentRef.instance.content = content;
 		return componentRef.instance;

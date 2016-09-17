@@ -36,11 +36,7 @@ export class ArticlePanelComponent {
 			let wordId       = wordContainer.dataset['wordId'];
 			let markableWord = this._mwf.create(wordContainer);
 			
-			markableWord.mark.subscribe(marked=>{
-				if (marked)  article.selectedWordsIds.add(wordId);
-				else         article.selectedWordsIds.remove(wordId);
-				console.log(article.selectedWordsIds.toArray());
-			});
+			markableWord.mark.subscribe(() => { article.selectedWordsIds.toggle(wordId); });
 		}
 
 		this._articleContainer.nativeElement.appendChild(htmlElement);

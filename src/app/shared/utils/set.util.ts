@@ -1,13 +1,15 @@
-export class Set<C> {
-	private _set: Object = {};
+export class Set<E> {
+	private _store: Object = {};
 
-	add(element: C) {
-		this._set[(<any>element)] = true;
+	add(element: E) {
+		this._store[(<any>element)] = true;
 	}
-	remove(element: C) {
-		delete this._set[(<any>element)];
+
+	remove(element: E) {
+		delete this._store[(<any>element)];
 	}
-	toggle(element: C) {
+
+	toggle(element: E) {
 		if (this.has(element)) {
 			this.remove(element);
 			return false;
@@ -17,11 +19,11 @@ export class Set<C> {
 		}
 	}
 
-	has(element: C): boolean {
-		return Object.prototype.hasOwnProperty.call(this._set, element);
+	has(element: E): boolean {
+		return Object.prototype.hasOwnProperty.call(this._store, element);
 	}
 
 	toArray(): Array<string> {
-		return Object.keys(this._set);
+		return Object.keys(this._store);
 	}
 }

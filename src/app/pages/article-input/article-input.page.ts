@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticleService } from './../shared/services/article.service';
+import { ArticleService } from './../../shared/services/article.service';
 import { ArticleFactory } from './factories/article.factory';
 
 import { RtfInputComponent, RtfData } from './components/rtf-input.component';

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { ArticleInputPage } from './article-input';
-import { WordMarkerPage }   from './word-marker';
+import { ArticleInputPage } from './pages/article-input';
+import { WordMarkerPage }   from './pages/word-marker';
 
 export const ROUTES: Routes = [
   { path: '',              component: ArticleInputPage },

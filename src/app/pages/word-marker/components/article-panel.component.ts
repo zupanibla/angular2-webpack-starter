@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 
-import { Article } from './../../shared/structures/article.structure';
+import { Article } from './../../../shared/structures/article.structure';
 import { MarkableWordFactory } from './../factories/markable-word.factory';
 
 @Component({

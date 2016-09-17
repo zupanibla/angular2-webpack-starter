@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Article } from './../../shared/structures/article.structure';
+import { Article } from './../../../shared/structures/article.structure';
 import { DOMNodeArticlifier } from './../tools/dom-node-articlifier.tool';
-import { Set } from './../../shared/utils/set.util';
-import { HashMap } from './../../shared/utils/hash-map.util';
+import { Set } from './../../../shared/utils/set.util';
+import { HashMap } from './../../../shared/utils/hash-map.util';
 
 @Injectable()
 export class ArticleFactory {

@@ -1,9 +1,9 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Article } from './../shared/structures/article.structure';
+import { Article } from './../../shared/structures/article.structure';
 import { ArticlePanelComponent } from './components/article-panel.component';
-import { ArticleService } from './../shared/services/article.service';
+import { ArticleService } from './../../shared/services/article.service';
 
 @Component({
 	template: `

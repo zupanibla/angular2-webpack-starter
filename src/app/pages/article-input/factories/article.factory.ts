@@ -14,7 +14,7 @@ export class ArticleFactory {
 		let htmlElement = document.createElement('div');
 		htmlElement.innerHTML = html;
 		let template = this._dna.articlify(htmlElement).htmlElement.innerHTML;
-		return {template, selectedWordsIds: new Set(), wordDefinitionsById: new HashMap()};
+		return {template, selectedWordsIds: new Set(), wordDefinitions: []};
 	}
 
 }

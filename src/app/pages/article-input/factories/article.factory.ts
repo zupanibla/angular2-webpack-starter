@@ -13,8 +13,16 @@ export class ArticleFactory {
 	create(html: string): Article {
 		let htmlElement = document.createElement('div');
 		htmlElement.innerHTML = html;
-		let template = this._dna.articlify(htmlElement).htmlElement.innerHTML;
-		return {template, selectedWordsIds: new Set(), wordDefinitions: []};
+		let articlified = this._dna.articlify(htmlElement);
+		return {
+			template: articlified.htmlElement.innerHTML,
+			selectedWordsIds: new Set(),
+			wordDefinitions: articlified.wordContainers.map(container => ({
+				query: container.innerHTML,
+				wordNumber: 0,
+				definitionNumber: 0
+			}))
+		};
 	}
 
 }

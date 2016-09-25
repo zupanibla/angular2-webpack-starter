@@ -1,0 +1,4 @@
+{
+	"get-words-by-query": "dictionary-service/get-words-by-query",
+	"test": "test"
+}

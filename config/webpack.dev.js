@@ -156,7 +156,16 @@ module.exports = webpackMerge(commonConfig, {
       aggregateTimeout: 300,
       poll: 1000
     },
-    outputPath: helpers.root('dist')
+    outputPath: helpers.root('dist'),
+     // Custom back-end proxy
+    proxy: {
+      '/backend-ajax-handler': {
+        target: 'http://word-marker-backend.dev',
+        pathRewrite: {'^/backend-ajax-handler' : ''},
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
 
   /*

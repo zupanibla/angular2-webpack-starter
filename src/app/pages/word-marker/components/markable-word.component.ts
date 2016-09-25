@@ -7,8 +7,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 	span {
 		cursor: pointer;
 	}
+	span:hover {
+		background: #f1f1f1;
+	}
 	.marked {
-		background-color: yellow;
+		background: yellow !important;
 	}
 	`]
 })

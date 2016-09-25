@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'RxJS';
 
 import { DictionaryKey } from './../../../shared/structures/dictionary-key.structure';
+import { DictionaryAjaxRequestsService } from './../services/dictionary-ajax-requests.service';
+import { WordData } from './../structures/word-data.structure';
+
 @Injectable()
 export class DictionaryService {
 
-	getWords(query: string): Array<WordData> {
-		return [{"text":"drug","pronounciation":"druhg","definitions":["a habit-forming medicinal or illicit substance, especially a narcotic."]},{"text":"drug","pronounciation":"druhg","definitions":["a simple past tense and past participle of"]},{"text":"Drug","pronounciation":"droo g","definitions":["the cosmic principle of disorder and falsehood."]}];
+	constructor(private _dictionaryAjaxRequests: DictionaryAjaxRequestsService) {} // Kje je cache
+
+	getWords(query: string): Observable<Array<WordData>> {
+		return this._dictionaryAjaxRequests.requestGetWordsByQuery(query);
 	}
 
-	getDefinitionCard(key: DictionaryKey) {
-		let word = this.getWords(key.query)[key.wordNumber];
-		return {
-			text: word.text,
-			pronounciation: word.pronounciation,
-			definition: word.definitions[key.definitionNumber]
-		}
+	getDefinitionCard(key: DictionaryKey): Observable<any> { // TODO tole je shit
+		return this.getWords(key.query).map(words => {
+			let word = words[key.wordNumber];
+			return {
+				text: word.text,
+				pronounciation: word.pronounciation,
+				definition: word.definitions[key.definitionNumber]
+			}
+		});
 	}
-}
-
-interface WordData {
-	text: string;
-	pronounciation: string;
-	definitions: Array<string>;
 }

@@ -5,15 +5,21 @@ import { DictionaryService } from './../../services/dictionary.service';
 import { WordCardComponent } from './../../components/word-card.component';
 
 @Component({
-	selector: 'selected-words-list-item',
+	selector: 'selected-words-list-item', // TODO Error case
 	template: `
-		<word-card [data]="dictionary.getDefinitionCard(dictionaryKey)"></word-card>
+		<div *ngIf="!_data">Nalagam besedo...</div>
+		<word-card *ngIf="_data" [data]="_data"></word-card>
 	`,
 	directives: [WordCardComponent]
 })
 export class SelectedWordsListItemComponent {
 	@Input() dictionaryKey: DictionaryKey;
 	@Output() delete: EventEmitter<boolean> = new EventEmitter<boolean>();
+	private _data = null;
 
-	constructor(public dictionary: DictionaryService) {}
+	constructor(private _dictionary: DictionaryService) {}
+
+	ngOnInit() {
+		this._dictionary.getDefinitionCard(this.dictionaryKey).subscribe(data => { this._data = data });
+	}
 }

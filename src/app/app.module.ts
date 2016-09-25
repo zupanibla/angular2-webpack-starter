@@ -15,19 +15,33 @@ import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
 
-import { AdaptedMarkableWordComponent } from './pages/word-marker/components/adapted-markable-word.component';
+// PAGES
 import { ArticleInputPage } from './pages/article-input';
-import { ArticleService } from './shared/services/article.service';
-import { DOMNodeArticlifier } from './pages/article-input/tools/dom-node-articlifier.tool';
-import { MockArticleService } from './dev/article.service.mock';
 import { WordMarkerPage }   from './pages/word-marker';
+
+// SHARED SERVICES
+import { AjaxRequestsService } from './shared/services/ajax-requests.service';
+import { ArticleService } from './shared/services/article.service';
+
+// PAGE: ARTICLE-INPUT
+import { DOMNodeArticlifier } from './pages/article-input/tools/dom-node-articlifier.tool';
+
+// PAGE: WORD-MARKER
+import { AdaptedMarkableWordComponent } from
+ './pages/word-marker/components/adapted-markable-word.component';
+import { DictionaryAjaxRequestsService } from
+ './pages/word-marker/services/dictionary-ajax-requests.service';
+
+// MOCKS
+import { MockArticleService } from './dev/article.service.mock';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  // ArticleService,
   { provide: ArticleService, useClass: MockArticleService },
+  AjaxRequestsService,
+  DictionaryAjaxRequestsService,
   DOMNodeArticlifier
 ];
 

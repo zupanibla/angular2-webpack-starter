@@ -4,16 +4,16 @@ import { Article } from './../../../../shared/structures/article.structure';
 import { DictionaryService } from './../../services/dictionary.service';
 import { SelectedWordsListItemComponent } from './item.component';
 
-@Component({ // TypeError: Cannot read property 'query' of undefined
+@Component({
 	selector: 'selected-words-list',
 	template: `
-		<h1>SelectedWordsListComponent</h1>
 		<ul>
 			<li *ngFor="let key of selectedWordsDictionaryKeys">
 				<selected-words-list-item [dictionaryKey]="key"></selected-words-list-item>
 			</li>
 		</ul>
 	`,
+	styleUrls: ['./../../styles/no-list-style.style.sass'],
 	directives: [SelectedWordsListItemComponent],
 	providers: [DictionaryService]
 })
@@ -25,6 +25,5 @@ export class SelectedWordsListComponent {
 		return this.article.selectedWordsIds.toArray().map(str=>parseInt(str)).map(wordId => {
 			return this.article.wordDefinitions[wordId];
 		});
-
 	}
 }

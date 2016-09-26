@@ -12,6 +12,8 @@ import { ROUTES } from './app.routes';
 // App is our top level component
 import { App } from './app.component';
 
+import { MOCK_PROVIDERS } from './mock-providers';
+
 // PAGES
 import { ArticleInputPage } from './pages/article-input';
 import { WordMarkerPage }   from './pages/word-marker';
@@ -31,15 +33,11 @@ import { DictionaryAjaxRequestsService } from
  import { DictionaryService } from
  './pages/word-marker/services/dictionary.service';
 
-// MOCKS
-import { MockArticleService } from './dev/article.service.mock';
-import { MockDictionaryService } from './dev/dictionary.service.mock';
-
 // Application wide providers
 const APP_PROVIDERS = [
-  { provide: ArticleService, useClass: MockArticleService }, // TODO MOCK
+  ArticleService,
   AjaxRequestsService,
-  { provide: DictionaryService, useClass: MockDictionaryService }, // TODO MOCK
+  DictionaryService,
   DictionaryAjaxRequestsService,
   DOMNodeArticlifier
 ];
@@ -64,7 +62,8 @@ const APP_PROVIDERS = [
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    MOCK_PROVIDERS
   ]
 })
 export class AppModule {}

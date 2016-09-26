@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'RxJS';
+import { Observable } from 'rxjs';
 
 import { DictionaryKey } from './../../../shared/structures/dictionary-key.structure';
 import { DictionaryAjaxRequestsService } from './../services/dictionary-ajax-requests.service';

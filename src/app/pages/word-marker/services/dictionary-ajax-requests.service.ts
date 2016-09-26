@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'RxJS';
+import { Observable } from 'rxjs';
 
 import { AjaxRequestsService } from '../../../shared/services/ajax-requests.service';
 import { WordData } from './../structures/word-data.structure';

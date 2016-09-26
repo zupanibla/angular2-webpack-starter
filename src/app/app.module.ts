@@ -31,16 +31,20 @@ import { AdaptedMarkableWordComponent } from
  './pages/word-marker/components/adapted-markable-word.component';
 import { DictionaryAjaxRequestsService } from
  './pages/word-marker/services/dictionary-ajax-requests.service';
+ import { DictionaryService } from
+ './pages/word-marker/services/dictionary.service';
 
 // MOCKS
 import { MockArticleService } from './dev/article.service.mock';
+import { MockDictionaryService } from './dev/dictionary.service.mock';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
-  { provide: ArticleService, useClass: MockArticleService },
+  { provide: ArticleService, useClass: MockArticleService }, // TODO MOCK
   AjaxRequestsService,
+  { provide: DictionaryService, useClass: MockDictionaryService }, // TODO MOCK
   DictionaryAjaxRequestsService,
   DOMNodeArticlifier
 ];

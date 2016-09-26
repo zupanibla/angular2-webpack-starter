@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { Article } from './../../../../shared/structures/article.structure';
-import { DictionaryService } from './../../services/dictionary.service';
 import { SelectedWordsListItemComponent } from './item.component';
 
 @Component({
@@ -15,7 +14,6 @@ import { SelectedWordsListItemComponent } from './item.component';
 	`,
 	styleUrls: ['./../../styles/no-list-style.style.sass'],
 	directives: [SelectedWordsListItemComponent],
-	providers: [DictionaryService]
 })
 export class SelectedWordsListComponent {
 	@Input() article: Article;

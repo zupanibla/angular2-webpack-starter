@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 		<span class="pronounciation">[{{data.pronounciation}}]</span>
 		<span class="definition">{{data.definition}}</span>
 	`,
-	styleUrls: ['./../styles/word-card.style.sass']
+	styleUrls: ['word-card.component.style.sass']
 })
 export class WordCardComponent {
 	@Input() data: WordCardData;

@@ -33,7 +33,7 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	        <a href="mailto:zupaniblaz@gmail.com">kontaktirajte nas</a>
 	    </footer>
 	`,
-	styleUrls: ['./styles/article-input.style.sass'],
+	styleUrls: ['article-input.page.style.sass'],
 	directives: [RtfInputComponent],
 	providers: [ArticleFactory]
 })

@@ -7,21 +7,21 @@ import { SelectedWordsListItemComponent } from './item.component';
 	selector: 'selected-words-list',
 	template: `
 		<ul>
-			<li *ngFor="let key of selectedWordsDictionaryKeys">
-				<selected-words-list-item [dictionaryKey]="key"></selected-words-list-item>
+			<li *ngFor="let wordId of selectedWordsIds">
+				<selected-words-list-item
+				 [dictionaryKey]="article.wordDefinitions[wordId]"
+				 (delete)="article.selectedWordsIds.remove(wordId)"
+				></selected-words-list-item>
 			</li>
 		</ul>
 	`,
-	styleUrls: ['./../../styles/no-list-style.style.sass'],
+	styleUrls: ['selected-words-list.component.style.sass'],
 	directives: [SelectedWordsListItemComponent],
 })
 export class SelectedWordsListComponent {
 	@Input() article: Article;
 
-	get selectedWordsDictionaryKeys() {
-		if (!this.article) return [];
-		return this.article.selectedWordsIds.toArray().map(str=>parseInt(str)).map(wordId => {
-			return this.article.wordDefinitions[wordId];
-		});
+	get selectedWordsIds() {
+		return this.article.selectedWordsIds.toArray().map(str=>parseInt(str));
 	}
 }

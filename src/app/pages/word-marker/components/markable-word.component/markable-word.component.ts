@@ -3,17 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
 	selector: 'markable-word',
 	template: `<span [class.marked]="marked" (click)="clickHandler($event)"><ng-content></ng-content></span>`,
-	styles: [`
-	span {
-		cursor: pointer;
-	}
-	span:hover {
-		background: #f1f1f1;
-	}
-	.marked {
-		background: yellow !important;
-	}
-	`]
+	styleUrls: ['markable-word.component.style.sass']
 })
 export class MarkableWordComponent {
 	@Input()  marked: boolean;

@@ -5,7 +5,6 @@ import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular
     template: `
 	<textarea #inputField
 	 class="form-control input-lg"
-	 id="input-field"
 	 (beforepaste)="iePasteHandler($event)"
 	 (paste)="defaultPasteHandler($event)"
 	 (keydown)="keydownHandler($event)"
@@ -18,15 +17,7 @@ import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular
 	 #contentEditableDiv
 	></div>
     `,
-    styles: [`
-	#input-field {
-		margin: 15px auto;
-		widht: 100%;
-		box-shadow: none !important;
-		border-color: #ccc !important;
-		resize: none;
-	}
-    `]
+    styleUrls: ['rtf-input.component.style.sass']
 })
 export class RtfInputComponent {
 	@Output() submit = new EventEmitter<RtfData>();

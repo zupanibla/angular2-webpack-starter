@@ -21,14 +21,21 @@ export class ArticlePanelComponent {
 		let htmlElement       = document.createElement('div');
 		htmlElement.innerHTML = article.template;
 		let wordContainers    = htmlElement.querySelectorAll('[data-word]');
-		
+
+		let markableWords = {};
 		for (let wordContainer of (<any>wordContainers)) {
 			let wordId       = wordContainer.dataset['wordId'];
 			let markableWord = this._mwf.create(wordContainer);
-			
-			markableWord.mark.subscribe(() => { article.selectedWordsIds.toggle(wordId); });
+			markableWord.instance.onMark.subscribe(marked => {
+				if (marked) article.selectedWordsIds.add(wordId);
+				else        article.selectedWordsIds.remove(wordId);
+			});
+			markableWords[wordId] = markableWord;
 		}
 
+		article.selectedWordsIds.onChange.subscribe(val => {
+			markableWords[val.element].instance.setMarked(val.exists);
+		});
 		this._articleContainer.nativeElement.appendChild(htmlElement);
 	}
 }

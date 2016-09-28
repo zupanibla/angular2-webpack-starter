@@ -1,4 +1,4 @@
-import { Injectable, ComponentFactory, ComponentFactoryResolver, Injector } from '@angular/core';
+import { Injectable, ComponentFactory, ComponentFactoryResolver, Injector, ComponentRef } from '@angular/core';
 import { AdaptedMarkableWordComponent } from './../components/adapted-markable-word.component';
 
 @Injectable()
@@ -9,11 +9,11 @@ export class MarkableWordFactory {
 		this._componentFactory = cfr.resolveComponentFactory(AdaptedMarkableWordComponent);
 	}
 
-	create(wordContainer: HTMLElement) {
+	create(wordContainer: HTMLElement): ComponentRef<AdaptedMarkableWordComponent> {
 		let content      = wordContainer.innerHTML;
 		let componentRef = this._componentFactory.create(this._injector, [], wordContainer);
-		componentRef.instance.content = content;
-		return componentRef.instance;
+		componentRef.instance.setContent(content);
+		return componentRef;
 	}
 
 }

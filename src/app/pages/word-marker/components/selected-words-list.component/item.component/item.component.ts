@@ -8,7 +8,7 @@ import { WordCardComponent } from './../../../components/word-card.component';
 	selector: 'selected-words-list-item', // TODO Error case
 	template: `
 	<div class="wrapper">
-		<div class="remove" (click)="delete.emit(true)">x</div>
+		<div class="remove" (click)="delete.emit(true)"></div>
 		<div *ngIf="!_data">Nalagam besedo...</div>
 		<div><word-card *ngIf="_data" [data]="_data"></word-card></div>
 	</div>

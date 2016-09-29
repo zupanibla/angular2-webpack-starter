@@ -1,12 +1,18 @@
+.wrapper:hover
+	background: #f1f1f1
+	cursor: pointer
+
 .wrapper > div
 	display: table-cell
 
 .remove
-	cursor: pointer
 	visibility: hidden
 	width: 20px
 	text-align: center
 	font-size: 16px
+
+.remove:before
+	content: "\00d7"
 
 .remove:hover
 	font-weight: bold

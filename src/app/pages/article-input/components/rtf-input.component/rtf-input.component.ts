@@ -1,7 +1,7 @@
 import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
-    selector: 'rtf-input', // TODO a je vse to res pomembn?????????
+    selector: 'rtf-input', // TODO a je vse to res pomembn????????? // TODO to ni rtf-input šupak
     template: `
 	<textarea #inputField
 	 class="form-control input-lg"

@@ -3,6 +3,6 @@ import { DictionaryKey } from './../structures/dictionary-key.structure';
 
 export interface Article {
 	template: string;
-	selectedWordsIds: Set<number>;
+	markedWordsIds: Set<number>;
 	wordDefinitions: Array<DictionaryKey>;
 }

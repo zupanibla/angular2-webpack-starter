@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Article } from './../../shared/structures/article.structure';
 import { ArticlePanelComponent } from './components/article-panel.component';
 import { ArticleService } from './../../shared/services/article.service';
-import { SelectedWordsListComponent } from './components/selected-words-list.component';
+import { MarkedWordsListComponent } from './components/marked-words-list.component';
 
 @Component({
 	template: `
@@ -17,11 +17,11 @@ import { SelectedWordsListComponent } from './components/selected-words-list.com
 	            </div>
 	        </div>
 	        <div class="col-md-2">
-				<selected-words-list [article]="article"></selected-words-list>
+				<marked-words-list [article]="article"></marked-words-list>
 	        </div>
 	    </div>
 	`,
-	directives: [ArticlePanelComponent, SelectedWordsListComponent]
+	directives: [ArticlePanelComponent, MarkedWordsListComponent]
 })
 export class WordMarkerPage {
 	article: Article;

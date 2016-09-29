@@ -27,13 +27,13 @@ export class ArticlePanelComponent {
 			let wordId       = wordContainer.dataset['wordId'];
 			let markableWord = this._mwf.create(wordContainer);
 			markableWord.instance.onMark.subscribe(marked => {
-				if (marked) article.selectedWordsIds.add(wordId);
-				else        article.selectedWordsIds.remove(wordId);
+				if (marked) article.markedWordsIds.add(wordId);
+				else        article.markedWordsIds.remove(wordId);
 			});
 			markableWords[wordId] = markableWord;
 		}
 
-		article.selectedWordsIds.onChange.subscribe(val => {
+		article.markedWordsIds.onChange.subscribe(val => {
 			markableWords[val.element].instance.setMarked(val.exists);
 		});
 		this._articleContainer.nativeElement.appendChild(htmlElement);

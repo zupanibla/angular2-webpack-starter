@@ -16,7 +16,7 @@ export class ArticleFactory {
 		let articlified = this._dna.articlify(htmlElement);
 		return {
 			template: articlified.htmlElement.innerHTML,
-			selectedWordsIds: new Set(),
+			markedWordsIds: new Set(),
 			wordDefinitions: articlified.wordContainers.map(container => ({
 				query: container.innerHTML,
 				wordNumber: 0,

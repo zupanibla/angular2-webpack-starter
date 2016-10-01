@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__.'/dictionary-dot-com.service.php';
 
 class DictionaryService {

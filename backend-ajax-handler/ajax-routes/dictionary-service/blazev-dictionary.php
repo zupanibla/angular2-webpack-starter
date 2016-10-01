@@ -17,7 +17,7 @@ class BlazevDictionary {
 		foreach($entries as $entry) {
 			$d = [];
 			$d['text']           = str_replace('·', '', $entry->wrappedString('data-syllable="', '"'));
-			$d['pronounciation'] = strip_tags($entry->wrappedString('[', ']'));
+			$d['pronunciation'] = strip_tags($entry->wrappedString('[', ']'));
 			$d['definitions']    = array_values(array_filter(
 				array_map('trim',
 					array_map('strip_tags', $entry->wrappedStrings('<div class="def-content">', "</div>\r\n</div>"))

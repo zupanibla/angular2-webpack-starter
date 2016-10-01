@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 	selector: 'word-card',
 	template: `
 		<span class="word">{{data.text}}</span>
-		<span class="pronounciation">[{{data.pronounciation}}]</span>
+		<span class="pronunciation">[{{data.pronunciation}}]</span>
 		<span class="definition">{{data.definition}}</span>
 	`,
 	styleUrls: ['word-card.component.style.sass']
@@ -15,6 +15,6 @@ export class WordCardComponent {
 
 interface WordCardData {
 	word: string;
-	pronounciation: string;
+	pronunciation: string;
 	definition: string;
 }

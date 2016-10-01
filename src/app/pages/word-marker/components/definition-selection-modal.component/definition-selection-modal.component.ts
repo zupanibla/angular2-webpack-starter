@@ -39,7 +39,7 @@ export class DefinitionSelectionModalComponent {
 			this.wordCards = Array.prototype.concat.apply([],
 				words.map(word => {
 					return word.definitions.map(definition => {
-						return {text:word.text, pronounciation:word.pronounciation, definition};
+						return {text:word.text, pronunciation:word.pronunciation, definition};
 					});
 				})
 			);

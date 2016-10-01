@@ -1,5 +1,5 @@
 export interface WordData {
 	text: string;
-	pronounciation: string;
+	pronunciation: string;
 	definitions: Array<string>;
 }

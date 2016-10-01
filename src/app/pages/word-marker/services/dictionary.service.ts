@@ -19,7 +19,7 @@ export class DictionaryService {
 			let word = words[key.wordNumber];
 			return {
 				text: word.text,
-				pronounciation: word.pronounciation,
+				pronunciation: word.pronunciation,
 				definition: word.definitions[key.definitionNumber]
 			}
 		});

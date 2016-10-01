@@ -4,10 +4,11 @@ isset($_GET['query']) or die('{"err":"nisi dal queryja bumbar!"}');
 
 $query = $_GET['query'];
 
-require_once __DIR__.'/blazev-dictionary.php';
+require_once __DIR__.'/dictionary.class.php';
 
-$data = BlazevDictionary::fetchWord($query);
+$dictionary = new DictionaryService();
+$words = $dictionary->getWords($query);
 
-echo json_encode($data);
+echo json_encode($words);
 
 ?>

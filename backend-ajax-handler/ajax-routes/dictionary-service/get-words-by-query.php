@@ -4,7 +4,7 @@ isset($_GET['query']) or die('{"err":"nisi dal queryja bumbar!"}');
 
 $query = $_GET['query'];
 
-require_once __DIR__.'/dictionary.class.php';
+require_once __DIR__.'/dictionary.service.php';
 
 $dictionary = new DictionaryService();
 $words = $dictionary->getWords($query);

@@ -20,7 +20,7 @@ class DictionaryService {
 	}
 
 	public function getWords($query) {
-		$data = $this->getWordsFromDB($query);
+		$data = /*$this->getWordsFromDB($query);*/ false;
 		if($data === false) {
 			$webDictionary = new DictionaryDotComService();
 			$data = $webDictionary->getWords($query);

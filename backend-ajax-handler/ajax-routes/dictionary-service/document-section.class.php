@@ -65,16 +65,7 @@ class DocumentSection { // TODO chekiri al je inclusive/exclusive range
 	}
 
 	public function textContent() {
-		return strip_tags($this);
-	}
-	
-	public function textContentUtf8() {
-		return strip_tags(mb_substr(
-			$this->document,
-			$this->beginning,
-			$this->end - $this->beginning,
-			'UTF-8'
-		));
+		return preg_replace('/[ \t]+/', ' ', preg_replace('/[\r\n]+/', ' ',  strip_tags($this)));
 	}
 
 	function __toString() {

@@ -1,0 +1,35 @@
+<modal #modal>
+    <modal-header>
+        <h4 class="modal-title">Drugi pomeni besede <b>{{dictionaryKey?.query}}</b></h4>
+    </modal-header>
+    <modal-body>
+        <ul>
+	        <li *ngFor="let word of words; let wordNumber = index">
+				<h3 class="word-header">
+					<span class="word">{{word.text}}</span>
+					<span class="pronunciation" [ngSwitch]="options.pronunciationFormat">
+						<span *ngSwitchCase="'spell'">[{{word.pronunciation.spell}}]</span>
+						<span *ngSwitchCase="'ipa'">/{{word.pronunciation.ipa}}/</span>
+					</span>
+				</h3>
+				<ul>
+					<li *ngFor="let usage of word.usages; let usageNumber = index">
+						<h4>{{usage.type}}</h4>
+						<ul>
+							<li	*ngFor="let meaning of usage.meanings; let meaningNumber = index"
+							 class="meaning"
+							 (click)="changeMeaning(wordNumber, usageNumber, meaningNumber)"
+							>
+								<span class="definition">{{meaning.definition}}</span>
+								<span class="example">{{meaning.example}}</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+	        </li>
+        </ul>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Zapri</button>
+    </modal-footer>
+</modal>

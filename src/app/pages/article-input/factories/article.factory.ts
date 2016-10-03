@@ -20,7 +20,8 @@ export class ArticleFactory {
 			wordDefinitions: articlified.wordContainers.map(container => ({
 				query: container.innerHTML,
 				wordNumber: 0,
-				definitionNumber: 0
+				usageNumber: 0,
+				meaningNumber: 0
 			}))
 		};
 	}

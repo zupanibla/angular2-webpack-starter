@@ -37,16 +37,16 @@ class DictionaryDotComScrapper {
 				'ipa'   => $ipa
 			];
 
-			// DEFINITIONS
-			$definitionGroups = [];
+			// USAGES
+			$usages = [];
 
-			$definitionGroupSections = $wordSection->getWrappedSubsections(
+			$usageSections = $wordSection->getWrappedSubsections(
 				'<section class="def-pbk ce-spot"',
 				'</section>'
 			);
 
-			foreach ($definitionGroupSections as $section) {
-				$definitionGroupType = $section->getWrappedSubsections(
+			foreach ($usageSections as $section) {
+				$usageType = $section->getWrappedSubsections(
 					'<span class="dbox-pg">',
 					'</span>',
 					1
@@ -54,14 +54,14 @@ class DictionaryDotComScrapper {
 
 				$definitionSections = $section->getWrappedSubsections('<div class="def-content">', '</div>');
 
-				$definitionGroupElements = [];
+				$meanings = [];
 				foreach ($definitionSections as $section) {
 					$exampleSections = $section->getWrappedSubsections(
 						'<span class="dbox-example">',
 						'</span>',
 					1);
 					if (isset($exampleSections[0])) {
-						$definitionGroupElement = [
+						$meaning = [
 							'example' => $exampleSections[0]->textContent(),
 							'definition' => $section->getSubsection( // TODO remove trailing ':'
 								null,
@@ -69,18 +69,18 @@ class DictionaryDotComScrapper {
 							)->textContent()
 						];
 					} else {
-						$definitionGroupElement = ['definition' => $section->textContent()];
+						$meaning = ['definition' => $section->textContent()];
 					}
-					array_push($definitionGroupElements, $definitionGroupElement);
+					array_push($meanings, $meaning);
 				}
 
-				array_push($definitionGroups, [
-					'type'     => $definitionGroupType,
-					'elements' => $definitionGroupElements
+				array_push($usages, [
+					'type'     => $usageType,
+					'meanings' => $meanings
 				]);
 			}
 			
-			$word['definitionGroups'] = $definitionGroups; 
+			$word['usages'] = $usages; 
 			
 			array_push($words, $word);
 		}

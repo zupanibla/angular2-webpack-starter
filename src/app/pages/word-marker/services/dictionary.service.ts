@@ -3,14 +3,14 @@ import { Observable } from 'rxjs';
 
 import { DictionaryKey } from './../../../shared/structures/dictionary-key.structure';
 import { DictionaryAjaxRequestsService } from './../services/dictionary-ajax-requests.service';
-import { WordData } from './../structures/word-data.structure';
+import { Word } from './../structures/word.structure';
 
 @Injectable()
 export class DictionaryService {
 
 	constructor(private _dictionaryAjaxRequests: DictionaryAjaxRequestsService) {} // Kje je cache
 
-	getWords(query: string): Observable<Array<WordData>> {
+	getWords(query: string): Observable<Array<Word>> {
 		return this._dictionaryAjaxRequests.requestGetWordsByQuery(query);
 	}
 
@@ -20,7 +20,8 @@ export class DictionaryService {
 			return {
 				text: word.text,
 				pronunciation: word.pronunciation,
-				definition: word.definitions[key.definitionNumber]
+				usageType: word.usages[key.usageNumber].type,
+				meaning: word.usages[key.usageNumber].meanings[key.meaningNumber]
 			}
 		});
 	}

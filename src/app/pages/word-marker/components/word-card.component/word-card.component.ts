@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Meaning, Pronunciation } from './../../structures/word.structure';
+
 @Component({
 	selector: 'word-card',
 	template: `
@@ -8,8 +9,9 @@ import { Meaning, Pronunciation } from './../../structures/word.structure';
 			<span *ngSwitchCase="'spell'">[{{data.pronunciation.spell}}]</span>
 			<span *ngSwitchCase="'ipa'">/{{data.pronunciation.ipa}}/</span>
 		</span>
-		<span class="definition">{{data.meaning.definition}}</span>
-		<span class="example" *ngIf="options.showExamples">{{data.meaning.example}}</span>
+		<span class="definition">{{data.meaning.definition}}
+			<span class="example" *ngIf="options.showExamples">{{data.meaning.example}}</span>
+		</span>
 	`,
 	styleUrls: ['word-card.component.style.sass']
 })

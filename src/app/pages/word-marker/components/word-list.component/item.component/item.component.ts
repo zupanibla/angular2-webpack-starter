@@ -5,7 +5,7 @@ import { DictionaryService } from './../../../services/dictionary.service';
 import { WordCardComponent } from './../../../components/word-card.component';
 
 @Component({
-	selector: 'marked-words-list-item', // TODO Error case
+	selector: 'word-list-item', // TODO Error case
 	template: `
 	<div class="wrapper">
 		<div class="remove" (click)="delete.emit(true)"></div>
@@ -16,7 +16,7 @@ import { WordCardComponent } from './../../../components/word-card.component';
 	styleUrls: ['item.component.style.sass'],
 	directives: [WordCardComponent]
 })
-export class MarkedWordsListItemComponent {
+export class WordListItemComponent {
 	@Input() dictionaryKey: DictionaryKey;
 	@Output() delete: EventEmitter<boolean> = new EventEmitter<boolean>();
 	private _data = null;

@@ -18,7 +18,8 @@
 						<ul>
 							<li	*ngFor="let meaning of usage.meanings; let meaningNumber = index"
 							 class="meaning"
-							 (click)="changeMeaning(wordNumber, usageNumber, meaningNumber)"
+							 [class.active]="isSelected(wordNumber, usageNumber, meaningNumber)"
+							 (click)="select(wordNumber, usageNumber, meaningNumber)"
 							>
 								<span class="definition">{{meaning.definition}}</span>
 								<span class="example">{{meaning.example}}</span>

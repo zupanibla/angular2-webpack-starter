@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { DictionaryKey } from './../../../../shared/structures/dictionary-key.structure';
 import { DictionaryService } from './../../services/dictionary.service';
@@ -11,24 +12,32 @@ import { Word } from './../../structures/word.structure';
 })
 export class DefinitionSelectionModalComponent {
 	private dictionaryKey: DictionaryKey;
+	private onSelect: BehaviorSubject<DictionaryKey>;
 	private words: Array<Word> = [];
-	private options: Object = { pronunciationFormat: 'ipa', showExamples: true };
+	private options: Object = { pronunciationFormat: 'ipa', showExamples: true }; // TODO v global service
 
 	@ViewChild('modal') modal;
 
 	constructor(private dictionary: DictionaryService) {}
 
-	open(dictionaryKey: DictionaryKey) {
+	open(dictionaryKey: DictionaryKey): Observable<DictionaryKey> {
 		this.dictionaryKey = dictionaryKey;
 		this.dictionary.getWords(dictionaryKey.query).subscribe(words => {
 			this.words = words;
 		});
 		this.modal.open();
+		this.onSelect = new BehaviorSubject<DictionaryKey>(this.dictionaryKey);
+		return this.onSelect.asObservable();
 	}
 
-	changeMeaning(wordNumber: number, usageNumber: number, meaningNumber: number) {
-		this.dictionaryKey.wordNumber    = wordNumber;
-		this.dictionaryKey.usageNumber   = usageNumber;
-		this.dictionaryKey.meaningNumber = meaningNumber;
+	select(wordNumber: number, usageNumber: number, meaningNumber: number) {
+		this.dictionaryKey = {query: this.dictionaryKey.query, wordNumber, usageNumber, meaningNumber}
+		this.onSelect.next(this.dictionaryKey);
+	}
+
+	isSelected(wordNumber: number, usageNumber: number, meaningNumber: number) {
+		return this.dictionaryKey.wordNumber    == wordNumber &&
+		       this.dictionaryKey.usageNumber   == usageNumber &&
+		       this.dictionaryKey.meaningNumber == meaningNumber;
 	}
 }

@@ -7,7 +7,7 @@
 	        <li *ngFor="let word of words; let wordNumber = index">
 				<h3 class="word-header">
 					<span class="word">{{word.text}}</span>
-					<span class="pronunciation" [ngSwitch]="options.pronunciationFormat">
+					<span class="pronunciation" [ngSwitch]="settings.pronunciationFormat">
 						<span *ngSwitchCase="'spell'">[{{word.pronunciation.spell}}]</span>
 						<span *ngSwitchCase="'ipa'">/{{word.pronunciation.ipa}}/</span>
 					</span>

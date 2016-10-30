@@ -34,12 +34,16 @@ import { DictionaryAjaxRequestsService } from
  './pages/word-marker/services/dictionary-ajax-requests.service';
  import { DictionaryService } from
  './pages/word-marker/services/dictionary.service';
+ import { SettingsService } from
+ './pages/word-marker/services/settings.service';
+
 
 // Application wide providers
 const APP_PROVIDERS = [
   ArticleService,
   AjaxRequestsService,
   DictionaryService,
+  SettingsService,
   DictionaryAjaxRequestsService,
   DOMNodeArticlifier
 ];

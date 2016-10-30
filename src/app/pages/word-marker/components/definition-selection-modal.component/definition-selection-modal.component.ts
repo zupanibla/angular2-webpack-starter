@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { DictionaryKey } from './../../../../shared/structures/dictionary-key.structure';
 import { DictionaryService } from './../../services/dictionary.service';
+import { SettingsService } from './../../services/settings.service';
 import { Word } from './../../structures/word.structure';
 
 @Component({
@@ -14,11 +15,10 @@ export class DefinitionSelectionModalComponent {
 	private dictionaryKey: DictionaryKey;
 	private onSelect: BehaviorSubject<DictionaryKey>;
 	private words: Array<Word> = [];
-	private options: Object = { pronunciationFormat: 'ipa', showExamples: true }; // TODO v global service
 
 	@ViewChild('modal') modal;
 
-	constructor(private dictionary: DictionaryService) {}
+	constructor(private dictionary: DictionaryService, private settings: SettingsService) {}
 
 	open(dictionaryKey: DictionaryKey): Observable<DictionaryKey> {
 		this.dictionaryKey = dictionaryKey;

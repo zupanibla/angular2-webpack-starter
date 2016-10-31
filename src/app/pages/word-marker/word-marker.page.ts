@@ -5,11 +5,14 @@ import { Article } from './../../shared/structures/article.structure';
 import { ArticlePanelComponent } from './components/article-panel.component';
 import { ArticleService } from './../../shared/services/article.service';
 import { WordListComponent } from './components/word-list.component';
+import { SettingsModalComponent } from './components/settings-modal.component';
 
 @Component({
 	template: `
 		<div class="container">
 	        <div class="col-md-2">
+	        	<a href="javascript:void(0)" (click)="settingsModal.open()">Nastavitve</a>
+	        	<settings-modal #settingsModal></settings-modal>
 	        </div>
 	        <div class="col-md-8">
 	            <div id="main">
@@ -25,7 +28,7 @@ import { WordListComponent } from './components/word-list.component';
 	        </div>
 	    </div>
 	`,
-	directives: [ArticlePanelComponent, WordListComponent]
+	directives: [ArticlePanelComponent, WordListComponent, SettingsModalComponent]
 })
 export class WordMarkerPage {
 	article: Article;

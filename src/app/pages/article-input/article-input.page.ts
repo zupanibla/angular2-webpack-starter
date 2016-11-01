@@ -9,9 +9,9 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 @Component({ // TODO lepsi template, prestav template
 	template: `
 	    <div class="container">
-	        <div class="col-md-2">
+	        <div class="col-md-3">
 	        </div>
-	        <div class="col-md-8" style="overflow: hidden;">
+	        <div class="col-md-6" style="overflow: hidden;">
 	            <div id="main">
 	                <div class="page-header">
 	                    <h1 class="title">
@@ -22,7 +22,7 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	                <rtf-input (submit)="handleRtfInput($event)"></rtf-input>
 	            </div>
 	        </div>
-	        <div class="col-md-2">
+	        <div class="col-md-3">
 	        </div>
 	    </div>
 	    <footer>

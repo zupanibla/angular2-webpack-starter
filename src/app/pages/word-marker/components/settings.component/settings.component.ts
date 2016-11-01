@@ -5,7 +5,7 @@ import { SettingsService } from './../../services/settings.service';
 @Component({
 	selector: 'settings',
 	template: `
-	Format izgovorjave: <br>
+	Pronunciation format: <br>
 	<div class="btn-group" role="group">
 		<button class="btn btn-default"
 		 [class.active]="settings.pronunciationFormat == 'ipa'"
@@ -19,7 +19,7 @@ import { SettingsService } from './../../services/settings.service';
 	<div class="checkbox">
 		<label>
 			<input type="checkbox" [(ngModel)]="settings.showExamples"> 
-			Prikaži primere uporabe
+			Show usage examples
 		</label>
 	</div>
 	`

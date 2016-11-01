@@ -8,7 +8,7 @@ import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular
 	 (beforepaste)="iePasteHandler($event)"
 	 (paste)="defaultPasteHandler($event)"
 	 (keydown)="keydownHandler($event)"
-	 placeholder="Prilepi besedilo iz Worda ali spleta"
+	 placeholder="Paste some English content"
 	 autofocus
 	>
 	<div

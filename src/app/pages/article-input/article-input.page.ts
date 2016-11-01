@@ -16,7 +16,7 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	                <div class="page-header">
 	                    <h1 class="title">
 	                    Članker<br>
-	                    <small class="subtitle">Inovativna rešitev za domače naloge pri angleščini</small>
+	                    <small class="subtitle">Word study made easy</small>
 	                    </h1>
 	                </div>
 	                <rtf-input (submit)="handleRtfInput($event)"></rtf-input>
@@ -28,9 +28,9 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	    <footer>
 	        <a
 	         href="javascript: void(alert('Pejd do Blaža pa ti povedu o Aplikaciji za članke'))"
-	        >o Aplikaciji za clanke</a> 
+	        >about us</a> 
 	        | 
-	        <a href="mailto:zupaniblaz@gmail.com">kontaktirajte nas</a>
+	        <a href="mailto:zupaniblaz@gmail.com">contact us</a>
 	    </footer>
 	`,
 	styleUrls: ['article-input.page.style.sass'],

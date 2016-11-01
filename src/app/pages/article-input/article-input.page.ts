@@ -14,9 +14,9 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	        <div class="col-md-8" style="overflow: hidden;">
 	            <div id="main">
 	                <div class="page-header">
-	                    <h1>
+	                    <h1 class="title">
 	                    Članker<br>
-	                    <small>Inovativna rešitev za domače naloge pri angleščini</small>
+	                    <small class="subtitle">Inovativna rešitev za domače naloge pri angleščini</small>
 	                    </h1>
 	                </div>
 	                <rtf-input (submit)="handleRtfInput($event)"></rtf-input>

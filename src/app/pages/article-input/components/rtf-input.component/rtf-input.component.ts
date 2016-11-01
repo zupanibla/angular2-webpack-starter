@@ -1,16 +1,16 @@
 import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
-    selector: 'rtf-input', // TODO a je vse to res pomembn????????? // TODO to ni rtf-input šupak
+    selector: 'rtf-input', // TODO a je vse to res pomembn?????????
     template: `
-	<textarea #inputField
+	<input type="text" #inputField
 	 class="form-control input-lg"
 	 (beforepaste)="iePasteHandler($event)"
 	 (paste)="defaultPasteHandler($event)"
 	 (keydown)="keydownHandler($event)"
 	 placeholder="Prilepi besedilo iz Worda ali spleta"
 	 autofocus
-	></textarea>
+	>
 	<div
 	 contenteditable="true"
 	 style="position: absolute; left: 0; top: -20000px;"

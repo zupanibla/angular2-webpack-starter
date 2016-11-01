@@ -13,9 +13,9 @@ import { MarkableWordFactory } from './../../factories/markable-word.factory';
 })
 export class ArticlePanelComponent {
 	@Input() set article(val) { this.displayArticle(val); }
-	@ViewChild('articleContainer') _articleContainer;
+	@ViewChild('articleContainer') articleContainer;
 	
-	constructor(private _mwf: MarkableWordFactory) {}
+	constructor(private mwf: MarkableWordFactory) {}
 
 	displayArticle(article: Article) {
 		let htmlElement       = document.createElement('div');
@@ -25,7 +25,7 @@ export class ArticlePanelComponent {
 		let markableWords = {};
 		for (let wordContainer of (<any>wordContainers)) {
 			let wordId       = wordContainer.dataset['wordId'];
-			let markableWord = this._mwf.create(wordContainer);
+			let markableWord = this.mwf.create(wordContainer);
 			markableWord.instance.onMark.subscribe(marked => {
 				if (marked) article.markedWordsIds.add(wordId);
 				else        article.markedWordsIds.remove(wordId);
@@ -36,6 +36,6 @@ export class ArticlePanelComponent {
 		article.markedWordsIds.onChange.subscribe(val => {
 			markableWords[val.element].instance.setMarked(val.exists);
 		});
-		this._articleContainer.nativeElement.appendChild(htmlElement);
+		this.articleContainer.nativeElement.appendChild(htmlElement);
 	}
 }

@@ -44,7 +44,7 @@ export class WordMarkerPage {
 	// TODO: ARTICLE PANEL ?
 
 	// MARKED WORDS LIST
-	get markedWords() {
+	private get markedWords() {
 		return this.article.markedWordsIds.toArray().map(str=>parseInt(str)).map(wordId => {
 			return { wordId, dictionaryKey: this.article.wordDefinitions[wordId]}
 		});

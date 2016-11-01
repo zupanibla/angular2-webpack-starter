@@ -1,4 +1,4 @@
-import { Component, ElementRef, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'rtf-input', // TODO a je vse to res pomembn?????????

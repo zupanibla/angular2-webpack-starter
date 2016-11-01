@@ -1,7 +1,6 @@
 import { Component, Input, ChangeDetectorRef, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { DictionaryKey } from './../../../../shared/structures/dictionary-key.structure';
-import { Article } from './../../../../shared/structures/article.structure';
 import { DefinitionSelectionModalComponent }
 	from './../../components/definition-selection-modal.component';
 import { WordListItemComponent } from './item.component';

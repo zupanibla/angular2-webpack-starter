@@ -3,17 +3,16 @@ import { AdaptedMarkableWordComponent } from './../components/adapted-markable-w
 
 @Injectable()
 export class MarkableWordFactory {
-	private _componentFactory: ComponentFactory<AdaptedMarkableWordComponent>;
+	private componentFactory: ComponentFactory<AdaptedMarkableWordComponent>;
 
-	constructor(cfr: ComponentFactoryResolver, private _injector: Injector) {
-		this._componentFactory = cfr.resolveComponentFactory(AdaptedMarkableWordComponent);
+	constructor(cfr: ComponentFactoryResolver, private injector: Injector) {
+		this.componentFactory = cfr.resolveComponentFactory(AdaptedMarkableWordComponent);
 	}
 
 	create(wordContainer: HTMLElement): ComponentRef<AdaptedMarkableWordComponent> {
 		let content      = wordContainer.innerHTML;
-		let componentRef = this._componentFactory.create(this._injector, [], wordContainer);
+		let componentRef = this.componentFactory.create(this.injector, [], wordContainer);
 		componentRef.instance.setContent(content);
 		return componentRef;
 	}
-
 }

@@ -1,4 +1,4 @@
-import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { DictionaryKey } from './../../../../shared/structures/dictionary-key.structure';
@@ -30,12 +30,12 @@ export class DefinitionSelectionModalComponent {
 		return this.onSelect.asObservable();
 	}
 
-	select(wordNumber: number, usageNumber: number, meaningNumber: number) {
+	private select(wordNumber: number, usageNumber: number, meaningNumber: number) {
 		this.dictionaryKey = {query: this.dictionaryKey.query, wordNumber, usageNumber, meaningNumber}
 		this.onSelect.next(this.dictionaryKey);
 	}
 
-	isSelected(wordNumber: number, usageNumber: number, meaningNumber: number) {
+	private isSelected(wordNumber: number, usageNumber: number, meaningNumber: number) {
 		return this.dictionaryKey.wordNumber    == wordNumber &&
 		       this.dictionaryKey.usageNumber   == usageNumber &&
 		       this.dictionaryKey.meaningNumber == meaningNumber;

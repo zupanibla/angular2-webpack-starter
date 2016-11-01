@@ -7,9 +7,9 @@ import { Word } from './../structures/word.structure';
 @Injectable()
 export class DictionaryAjaxRequestsService {
 
-	constructor(private _ajaxRequests: AjaxRequestsService) {}
+	constructor(private ajaxRequests: AjaxRequestsService) {}
 
 	requestGetWordsByQuery(query): Observable<Array<Word>> {
-		return this._ajaxRequests.request('get-words-by-query', {query});
+		return this.ajaxRequests.request('get-words-by-query', {query});
 	}
 }

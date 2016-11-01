@@ -39,12 +39,12 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 })
 export class ArticleInputPage {
 
-	constructor(private _router: Router, private _articleFactory: ArticleFactory, private _articleService: ArticleService) {
+	constructor(private router: Router, private articleFactory: ArticleFactory, private articleService: ArticleService) {
 		console.log('!ArticleInputPage.constructor');
 	}
 
 	private handleRtfInput(rtf: RtfData) {
-		this._articleService.currentArticle = this._articleFactory.create(rtf.html);
-		this._router.navigate(['/word-marker']);
+		this.articleService.currentArticle = this.articleFactory.create(rtf.html);
+		this.router.navigate(['/word-marker']);
 	}
 }

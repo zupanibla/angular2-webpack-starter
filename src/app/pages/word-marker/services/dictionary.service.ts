@@ -8,10 +8,10 @@ import { Word } from './../structures/word.structure';
 @Injectable()
 export class DictionaryService {
 
-	constructor(private _dictionaryAjaxRequests: DictionaryAjaxRequestsService) {} // Kje je cache
+	constructor(private dictionaryAjaxRequests: DictionaryAjaxRequestsService) {} // TODO Kje je cache
 
 	getWords(query: string): Observable<Array<Word>> {
-		return this._dictionaryAjaxRequests.requestGetWordsByQuery(query);
+		return this.dictionaryAjaxRequests.requestGetWordsByQuery(query);
 	}
 
 	getDefinitionCard(key: DictionaryKey): Observable<any> { // TODO tole je shit

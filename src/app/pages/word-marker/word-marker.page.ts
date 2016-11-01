@@ -19,7 +19,7 @@ import { SettingsModalComponent } from './components/settings-modal.component';
 					<article-panel [article]="article"></article-panel>
 	            </div>
 	        </div>
-	        <div class="col-md-2">
+	        <div class="col-md-2 word-list-wrapper">
 				<word-list
 				 [words]="markedWords"
 				 (wordDefinitionSelect)="handleDefinitionSelect($event)"
@@ -28,7 +28,8 @@ import { SettingsModalComponent } from './components/settings-modal.component';
 	        </div>
 	    </div>
 	`,
-	directives: [ArticlePanelComponent, WordListComponent, SettingsModalComponent]
+	directives: [ArticlePanelComponent, WordListComponent, SettingsModalComponent],
+	styleUrls: ['./word-marker.page.style.sass']
 })
 export class WordMarkerPage {
 	article: Article;

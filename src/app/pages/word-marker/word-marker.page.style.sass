@@ -1,5 +1,14 @@
 .container
 	margin-top: 12px
 
-.word-list-wrapper
+.word-list-col
 	padding-left: 0px
+
+.word-list-wrapper.affix
+	overflow-y: auto
+	height: 80%
+	max-width: 20%
+
+@media print /* TODO: OPTIONAL? */
+	.word-list-wrapper.affix
+		max-width: 100% !important

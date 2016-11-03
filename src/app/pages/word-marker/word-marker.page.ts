@@ -6,6 +6,7 @@ import { ArticlePanelComponent } from './components/article-panel.component';
 import { ArticleService } from './../../shared/services/article.service';
 import { WordListComponent } from './components/word-list.component';
 import { SettingsModalComponent } from './components/settings-modal.component';
+import { PerspectiveService, ViewType } from './../../shared/services/perspective.service';
 
 @Component({
 	template: `
@@ -19,12 +20,16 @@ import { SettingsModalComponent } from './components/settings-modal.component';
 					<article-panel [article]="article"></article-panel>
 	            </div>
 	        </div>
-	        <div class="col-md-2 word-list-wrapper">
-				<word-list
-				 [words]="markedWords"
-				 (wordDefinitionSelect)="handleDefinitionSelect($event)"
-				 (wordDelete)="handleWordDelete($event)"
-				></word-list>
+	        <div class="col-md-2 word-list-col">
+	        	<div class="word-list-wrapper"
+	        	 [class.affix]="perspective.viewType === ViewType.DESKTOP"
+	        	>
+					<word-list
+					 [words]="markedWords"
+					 (wordDefinitionSelect)="handleDefinitionSelect($event)"
+					 (wordDelete)="handleWordDelete($event)"
+					></word-list>
+				</div>
 	        </div>
 	    </div>
 	`,
@@ -32,9 +37,11 @@ import { SettingsModalComponent } from './components/settings-modal.component';
 	styleUrls: ['./word-marker.page.style.sass']
 })
 export class WordMarkerPage {
+	ViewType = ViewType;
 	article: Article;
 
-	constructor(router: Router, public articleService: ArticleService, cdr: ChangeDetectorRef) {
+	constructor(router: Router, public articleService: ArticleService,
+	 cdr: ChangeDetectorRef, private perspective: PerspectiveService) {
 		console.log('!WordMarkerPage.constructor');
 		if (!(this.article = articleService.currentArticle)) {
 			cdr.detach();

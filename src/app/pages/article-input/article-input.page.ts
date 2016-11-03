@@ -39,7 +39,8 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 })
 export class ArticleInputPage {
 
-	constructor(private router: Router, private articleFactory: ArticleFactory, private articleService: ArticleService) {
+	constructor(private router: Router, private articleFactory: ArticleFactory,
+	 private articleService: ArticleService) {
 		console.log('!ArticleInputPage.constructor');
 	}
 

@@ -45,7 +45,8 @@ export class RtfInputComponent {
 	}
 
 	defaultPasteHandler(e: ClipboardEvent) {
-		let html = e.clipboardData.getData('text/html') || '<p>' + e.clipboardData.getData('text') + '</p>';
+		let html = e.clipboardData.getData('text/html') ||
+		 '<p>' + e.clipboardData.getData('text').replace(/(?:\r\n|\r|\n)/g, '<br />') + '</p>';
 		let text = e.clipboardData.getData('text');
 		this.submit.emit({html, text});
 		e.preventDefault();

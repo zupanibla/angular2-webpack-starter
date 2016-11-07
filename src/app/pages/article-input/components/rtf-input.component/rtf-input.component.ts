@@ -21,6 +21,7 @@ import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 })
 export class RtfInputComponent {
 	@Output() submit = new EventEmitter<RtfData>();
+	@Output() typingAttempt = new EventEmitter<boolean>();
 	@ViewChild('contentEditableDiv') contentEditableDiv;
 	@ViewChild('inputField') inputField;
 
@@ -53,7 +54,10 @@ export class RtfInputComponent {
 	}
 
 	keydownHandler(e: KeyboardEvent) {
-		if (!e.ctrlKey) e.preventDefault();
+		if (!e.ctrlKey) {
+			e.preventDefault();
+			this.typingAttempt.emit(true); // TODO
+		}
 	}
 }
 

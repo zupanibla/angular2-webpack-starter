@@ -19,16 +19,17 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	                    <small class="subtitle">Word study made easy</small>
 	                    </h1>
 	                </div>
-	                <rtf-input (submit)="handleRtfInput($event)"></rtf-input>
+	                <rtf-input (submit)="handleRtfInput($event)" (typingAttempt)="showHelp = true"></rtf-input>
+	                <br>
+					<div class="alert alert-info" *ngIf="showHelp">[<strong>TODO</strong>: insert some random text here]
+					</div>
 	            </div>
 	        </div>
 	        <div class="col-md-3">
 	        </div>
 	    </div>
 	    <footer>
-	        <a
-	         href="javascript: void(alert('Pejd do Blaža pa ti povedu o Aplikaciji za članke'))"
-	        >about us</a> 
+	        <a href="javascript:void(0)">what's new in v0.2.1 (alpha)?</a> 
 	        | 
 	        <a href="mailto:zupaniblaz@gmail.com">contact us</a>
 	    </footer>

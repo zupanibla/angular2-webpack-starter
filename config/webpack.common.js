@@ -174,11 +174,20 @@ module.exports = {
         loader: 'file'
       },
 
+      // SASS
       { test: /\.scss$/, loaders: ['to-string-loader', 'css-loader', 'sass'] },
       { test: /\.sass$/, loaders: ['to-string-loader', 'css-loader', 'sass'] },
-      { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+      // { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+
+      // LESS
+      { test: /\.less$/, loader: "style!css!less" },
+
       // Bootstrap 4
-      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
+      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' },
+
+      // font awesome
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
     ]
 
   },

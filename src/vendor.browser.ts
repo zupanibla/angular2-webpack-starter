@@ -25,6 +25,9 @@ import 'rxjs/add/operator/mergeMap';
 import 'jquery';
 import 'bootstrap-loader';
 
+// font awesome
+import 'style!css!less!font-awesome-webpack/font-awesome-styles.loader!font-awesome-webpack/font-awesome.config.js';
+
 if ('production' === ENV) {
   // Production
 

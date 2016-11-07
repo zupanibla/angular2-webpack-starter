@@ -12,8 +12,15 @@ import { PerspectiveService, ViewType } from './../../shared/services/perspectiv
 	template: `
 		<div class="container">
 	        <div class="col-md-2">
-	        	<a href="javascript:void(0)" (click)="settingsModal.open()">Nastavitve</a>
-	        	<settings-modal #settingsModal></settings-modal>
+		        <div class="menu">
+		        	<a href="javascript:void(0)" (click)="settingsModal.open()" class="menu-item">
+		        		<i class="fa fa-cog fa-3x"></i>
+		        	</a>
+		        	<a href="javascript:void(0)" (click)="printArticle()" class="menu-item">
+		        		<i class="fa fa-print fa-3x"></i>
+		        	</a>
+		        	<settings-modal #settingsModal></settings-modal>
+		        </div>
 	        </div>
 	        <div class="col-md-8">
 	            <div id="main">
@@ -62,5 +69,9 @@ export class WordMarkerPage {
 	}
 	private handleWordDelete(e) {
 		this.articleService.unmarkWord(e);
+	}
+
+	private printArticle(e) {
+		window.print();
 	}
 }

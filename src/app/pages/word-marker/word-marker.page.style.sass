@@ -1,5 +1,5 @@
-.container
-	margin-top: 12px
+.container 
+	margin-top: 14px
 
 .word-list-col
 	padding-left: 0px
@@ -9,6 +9,23 @@
 	height: 80%
 	max-width: 20%
 
-@media print /* TODO: OPTIONAL? */
-	.word-list-wrapper.affix
+.word-list-wrapper.affix
+	@media print /* TODO: OPTIONAL? */
 		max-width: 100% !important
+
+a.menu-item
+	display: table-cell
+	text-align: center
+	text-decoration: none
+	color: #9d9d9d
+	
+	:hover
+		color: #444
+
+.menu
+	display: table
+	table-layout: fixed
+	width: 100%
+
+	@media print
+		display: none

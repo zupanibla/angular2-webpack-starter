@@ -8,7 +8,7 @@ import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 	 (beforepaste)="iePasteHandler($event)"
 	 (paste)="defaultPasteHandler($event)"
 	 (keydown)="keydownHandler($event)"
-	 placeholder="Paste some English content"
+	 placeholder="Paste some English text"
 	 autofocus
 	>
 	<div

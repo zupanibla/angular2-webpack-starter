@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ArticleService } from './../../shared/services/article.service';
 import { ArticleFactory } from './factories/article.factory';
+import { PerspectiveService, ViewType } from './../../shared/services/perspective.service';
 
 import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 
@@ -14,7 +15,7 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	        <div class="col-md-6" style="overflow: hidden;">
 	            <div id="main">
 	                <div class="page-header">
-	                    <h1 class="title">
+	                    <h1 class="title" [class.mobile-view]="perspective.viewType === ViewType.MOBILE">
 	                    Članker<br>
 	                    <small class="subtitle">Word study made easy</small>
 	                    </h1>
@@ -39,9 +40,10 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	providers: [ArticleFactory]
 })
 export class ArticleInputPage {
+	private ViewType = ViewType;
 
 	constructor(private router: Router, private articleFactory: ArticleFactory,
-	 private articleService: ArticleService) {
+	 private articleService: ArticleService, private perspective: PerspectiveService) {
 		console.log('!ArticleInputPage.constructor');
 	}
 

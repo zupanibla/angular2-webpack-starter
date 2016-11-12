@@ -14,6 +14,13 @@ export class ArticleFactory {
 		let htmlElement = document.createElement('div');
 		htmlElement.innerHTML = html;
 		let articlified = this._dna.articlify(htmlElement);
+
+		// smarter image scaling
+		for (let img of (<Array<HTMLImageElement>><any>articlified.htmlElement.getElementsByTagName('img'))) {
+			img.style.maxWidth = '100%';
+			img.parentElement.style.maxWidth = '100%';
+		}
+
 		return {
 			template: articlified.htmlElement.innerHTML,
 			markedWordsIds: new Set(),

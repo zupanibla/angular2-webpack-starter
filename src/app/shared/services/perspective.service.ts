@@ -24,11 +24,11 @@ export class PerspectiveService {
 	}
 
 	private get _viewType () {
-		return (this._windowWidth > 992) ? ViewType.DESKTOP : ViewType.MOBILE;
+		return (this._windowWidth > 992) ? ViewType.DESKTOP : ((this._windowWidth > 321) ? ViewType.TABLET : ViewType.MOBILE);
 	}
 
 }
 
-export enum ViewType { //TODO MOBILE_TABLET, TABLET, TABLET_DESKTOP
-	DESKTOP, MOBILE
+export enum ViewType {
+	MOBILE, TABLET, DESKTOP
 }

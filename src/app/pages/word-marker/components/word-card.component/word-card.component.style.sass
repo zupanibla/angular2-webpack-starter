@@ -1,15 +1,21 @@
 .word
 	display: inline-block
 	font-weight: bold
+	@media print
+		font-weight: bold !important
 
 .pronunciation
 	display: inline-block
 	color: green
+	@media print
+		color: green !important
 
 .definition
 	display: inline-block
 	font-size: 12px
 	color: gray
+	@media print
+		color: gray !important
 
 .example
-	text-decoration: underline /*TODO example je italic*/
+	font-style: italic /*TODO example je italic*/

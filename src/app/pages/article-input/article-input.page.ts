@@ -6,6 +6,7 @@ import { ArticleFactory } from './factories/article.factory';
 import { PerspectiveService, ViewType } from './../../shared/services/perspective.service';
 
 import { RtfInputComponent, RtfData } from './components/rtf-input.component';
+import { UpdateLogModalComponent } from './components/update-log-modal.component';
 
 @Component({ // TODO lepsi template, prestav template
 	template: `
@@ -22,7 +23,8 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	                </div>
 	                <rtf-input (submit)="handleRtfInput($event)" (typingAttempt)="showHelp = true"></rtf-input>
 	                <br>
-					<div class="alert alert-info" *ngIf="showHelp">[<strong>TODO</strong>: insert some random text here]
+					<div class="alert alert-info" *ngIf="showHelp">
+					Copy and paste text into the field (<strong>Ctrl + C</strong>, <strong>Ctrl + V</strong>)
 					</div>
 	            </div>
 	        </div>
@@ -30,13 +32,14 @@ import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 	        </div>
 	    </div>
 	    <footer>
-	        <a href="javascript:void(0)">what's new in v0.2.1 (alpha)?</a> 
+	        <a href="javascript:void(0)" (click)="updateLogModal.open()">what's new?</a>
 	        | 
 	        <a href="mailto:zupaniblaz@gmail.com">contact us</a>
 	    </footer>
+	    <update-log-modal #updateLogModal></update-log-modal>
 	`,
 	styleUrls: ['article-input.page.style.sass'],
-	directives: [RtfInputComponent],
+	directives: [RtfInputComponent, UpdateLogModalComponent],
 	providers: [ArticleFactory]
 })
 export class ArticleInputPage {

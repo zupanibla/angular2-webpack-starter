@@ -12,14 +12,16 @@ import { PerspectiveService, ViewType } from './../../shared/services/perspectiv
 	template: `
 		<div class="container">
 	        <div class="col-md-2">
-		        <div class="menu">
-		        	<a href="javascript:void(0)" (click)="settingsModal.open()" class="menu-item">
-		        		<i class="fa fa-cog fa-3x"></i>
-		        	</a>
-		        	<a href="javascript:void(0)" (click)="printArticle()" class="menu-item">
-		        		<i class="fa fa-print fa-3x"></i>
-		        	</a>
-		        	<settings-modal #settingsModal></settings-modal>
+	        	<div class="menu-wrapper" [class.affix]="perspective.viewType === ViewType.DESKTOP">
+			        <div class="menu">
+			        	<a href="javascript:void(0)" (click)="settingsModal.open()" class="menu-item">
+			        		<i class="fa fa-cog fa-3x"></i>
+			        	</a>
+			        	<a href="javascript:void(0)" (click)="printArticle()" class="menu-item">
+			        		<i class="fa fa-print fa-3x"></i>
+			        	</a>
+			        	<settings-modal #settingsModal></settings-modal>
+			        </div>
 		        </div>
 	        </div>
 	        <div class="col-md-8">

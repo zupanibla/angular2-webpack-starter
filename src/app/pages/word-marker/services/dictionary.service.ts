@@ -16,8 +16,8 @@ export class DictionaryService {
 		if (!this.words.has(query)) {
 			let subject = new BehaviorSubject<DictionaryEntry>({ data: null, state: DictionaryEntryState.LOADING });
 			this.words.set(query, subject);
+			this.loadEntry(query);
 		}
-		this.loadEntry(query);
 		return this.words.get(query);
 	}
 

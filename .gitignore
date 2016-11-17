@@ -62,3 +62,6 @@ npm-debug.log
 *.sublime-workspace
 *.sublime-project
 *.bat
+
+# Database #
+/backend-ajax-handler/ajax-routes/dictionary-service/words-by-query/

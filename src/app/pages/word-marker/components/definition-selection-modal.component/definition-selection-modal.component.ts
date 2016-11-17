@@ -22,8 +22,8 @@ export class DefinitionSelectionModalComponent {
 
 	open(dictionaryKey: DictionaryKey): Observable<DictionaryKey> {
 		this.dictionaryKey = dictionaryKey;
-		this.dictionary.getWords(dictionaryKey.query).subscribe(words => {
-			this.words = words;
+		this.dictionary.getEntry(dictionaryKey.query).subscribe(entry => {
+			this.words = entry.data;
 		});
 		this.modal.open();
 		this.onSelect = new BehaviorSubject<DictionaryKey>(this.dictionaryKey);

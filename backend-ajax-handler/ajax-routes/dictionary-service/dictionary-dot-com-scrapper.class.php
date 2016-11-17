@@ -5,7 +5,7 @@ class DictionaryDotComScrapper {
 
 	public function scrapWordSearchResults($htmlDocument) {
 		$documentSection = new DocumentSection($htmlDocument, 0, strlen($htmlDocument));
-
+  
 		$words = [];
 
 		$wordSections = $documentSection->getSubsectionsAfterDelimiter('<section class="luna-box">');
@@ -22,19 +22,19 @@ class DictionaryDotComScrapper {
 			1)[0]->textContent());
 
 			// PRONUNCIATION
-			$spell = $wordSection->getWrappedSubsections(
+			$spellSection   = $wordSection->getWrappedSubsections(
 				'<span class="pron spellpron">[',
 				']',
-			1)[0]->textContent();
-
-			$ipa = $wordSection->getWrappedSubsections(
+			1);
+			$ipaSection = $wordSection->getWrappedSubsections(
 				'<span class="pron ipapron">/',
 				'/ </span>',
-			1)[0]->textContent();
+			1);
 
+			if (!isset($spellSection[0]) or !isset($ipaSection[0])) continue;
 			$word['pronunciation'] = [
-				'spell' => $spell,
-				'ipa'   => $ipa
+				'spell' => $spellSection[0]->textContent(),
+				'ipa'   => $ipaSection[0]->textContent()
 			];
 
 			// USAGES
@@ -46,11 +46,11 @@ class DictionaryDotComScrapper {
 			);
 
 			foreach ($usageSections as $section) {
-				$usageType = $section->getWrappedSubsections(
+				$usageTypeSection = $section->getWrappedSubsections(
 					'<span class="dbox-pg">',
-					'</span>',
-					1
-				)[0]->textContent();
+					'</span>'
+				, 1);
+				if (!isset($usageTypeSection[0])) continue;
 
 				$definitionSections = $section->getWrappedSubsections('<div class="def-content">', '</div>');
 
@@ -75,7 +75,7 @@ class DictionaryDotComScrapper {
 				}
 
 				array_push($usages, [
-					'type'     => $usageType,
+					'type'     => $usageTypeSection[0]->textContent(),
 					'meanings' => $meanings
 				]);
 			}

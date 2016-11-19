@@ -34,7 +34,7 @@ import { UpdateLogModalComponent } from './components/update-log-modal.component
 	    <footer>
 	        <a href="javascript:void(0)" (click)="updateLogModal.open()">what's new?</a>
 	        | 
-	        <a href="mailto:zupaniblaz@gmail.com">contact us</a>
+	        <a href="mailto:zupaniblaz@gmail.com">send feedback</a>
 	    </footer>
 	    <update-log-modal #updateLogModal></update-log-modal>
 	`,

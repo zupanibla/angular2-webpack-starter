@@ -54,7 +54,7 @@ export class RtfInputComponent {
 	}
 
 	keydownHandler(e: KeyboardEvent) {
-		if (!e.ctrlKey) {
+		if (!e.ctrlKey && e.keyCode != 91) {
 			e.preventDefault();
 			this.typingAttempt.emit(true); // TODO
 		}

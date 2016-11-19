@@ -5,6 +5,7 @@
     <modal-body>
         <ul>
 	        <li *ngFor="let word of words; let wordNumber = index">
+	        	<hr>
 				<h3 class="word-header">
 					<span class="word">{{word.text}}</span>
 					<span class="pronunciation" [ngSwitch]="settings.pronunciationFormat">

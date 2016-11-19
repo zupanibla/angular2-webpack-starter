@@ -10,12 +10,12 @@ import { WordCardComponent } from './../../../components/word-card.component';
 	<div class="wrapper">
 		<div class="remove-wrapper"><span class="remove" (click)="delete.emit(true)"></span></div>
 		
-		<div *ngIf="dictionaryEntry.state === State.LOADING">Loading...</div>
+		<div *ngIf="dictionaryEntry.state === State.LOADING" (click)="0">Loading...</div>
 		<div *ngIf="dictionaryEntry.state === State.READY">
 			<word-card [data]="definitionCardFromEntry(dictionaryEntry, dictionaryKey)"></word-card>
 		</div>
-		<div *ngIf="dictionaryEntry.state === State.FAILURE">Failed to load word <b>{{dictionaryKey.query}}</b> 
-			<a href="javascript:void(0)" (click)="reload()">Try Reloading?</a>
+		<div *ngIf="dictionaryEntry.state === State.FAILURE" (click)="reload()">
+			Failed to load word <b>{{dictionaryKey.query}}</b> (click to reload)
 		</div>
 	</div>
 	`,
@@ -34,17 +34,19 @@ export class WordListItemComponent {
 	ngOnInit() {
 		console.log('A');
 		this.dictionary.getEntry(this.dictionaryKey.query).subscribe(data => { this.dictionaryEntry = data; });
-		console.log('B');
 	}
 
 	private definitionCardFromEntry(entry: DictionaryEntry, key: DictionaryKey) { // TODO tole je shit
 			let word = entry.data[key.wordNumber];
-			console.log(word);
 			return {
 				text: word.text,
 				pronunciation: word.pronunciation,
 				usageType: word.usages[key.usageNumber].type,
 				meaning: word.usages[key.usageNumber].meanings[key.meaningNumber]
 			}
+	}
+
+	reload() {
+		this.dictionary.reloadEntry(this.dictionaryKey.query);
 	}
 }

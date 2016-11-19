@@ -1,1 +1,1 @@
-<?php require 'ajax-handler.php'; ?>
+<?php require __DIR__.'/ajax-handler.php'; ?>

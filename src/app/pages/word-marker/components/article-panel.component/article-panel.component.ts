@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { Article } from './../../../../shared/structures/article.structure';
 import { MarkableWordFactory } from './../../factories/markable-word.factory';
@@ -6,13 +6,15 @@ import { MarkableWordFactory } from './../../factories/markable-word.factory';
 @Component({
 	selector: 'article-panel',
 	template: `
-	<div #articleContainer></div>
+		<div #articleContainer></div>
 	`,
 	styleUrls: ['article-panel.component.style.sass'],
 	providers: [MarkableWordFactory]
 })
 export class ArticlePanelComponent {
 	@Input() set article(val) { this.displayArticle(val); }
+	@Output() wordClick: EventEmitter<{id: number, marked: boolean}> = new EventEmitter<any>();
+
 	@ViewChild('articleContainer') articleContainer;
 	
 	constructor(private mwf: MarkableWordFactory) {}
@@ -24,13 +26,14 @@ export class ArticlePanelComponent {
 
 		let markableWords = {};
 		for (let wordContainer of (<any>wordContainers)) {
-			let wordId       = wordContainer.dataset['wordId'];
+			let id           = wordContainer.dataset['wordId'];
 			let markableWord = this.mwf.create(wordContainer);
 			markableWord.instance.onMark.subscribe(marked => {
-				if (marked) article.markedWordsIds.add(wordId);
-				else        article.markedWordsIds.remove(wordId);
+				if (marked) article.markedWordsIds.add(id);
+				else        article.markedWordsIds.remove(id);
+				this.wordClick.emit({id, marked});
 			});
-			markableWords[wordId] = markableWord;
+			markableWords[id] = markableWord;
 		}
 
 		article.markedWordsIds.onChange.subscribe(val => {

@@ -7,6 +7,7 @@ import { ArticleService } from './../../shared/services/article.service';
 import { WordListComponent } from './components/word-list.component';
 import { SettingsModalComponent } from './components/settings-modal.component';
 import { PerspectiveService, ViewType } from './../../shared/services/perspective.service';
+import { DefinitionSelectionModalComponent } from './components/definition-selection-modal.component';
 
 @Component({
 	template: `
@@ -26,7 +27,10 @@ import { PerspectiveService, ViewType } from './../../shared/services/perspectiv
 	        </div>
 	        <div class="col-md-8">
 	            <div id="main">
-					<article-panel [article]="article"></article-panel>
+					<article-panel [article]="article"
+					 (wordClick)="(perspective.viewType === ViewType.MOBILE && $event.marked) 
+					               ? definitionSelection.open(article.wordDefinitions[$event.id]) : false"
+					 ></article-panel>
 	            </div>
 	        </div>
 	        <div class="col-md-2 word-list-col">
@@ -41,14 +45,15 @@ import { PerspectiveService, ViewType } from './../../shared/services/perspectiv
 				</div>
 	        </div>
 	    </div>
+	    <definition-selection-modal #definitionSelection></definition-selection-modal>
 	`,
-	directives: [ArticlePanelComponent, WordListComponent, SettingsModalComponent],
+	directives: [ArticlePanelComponent, WordListComponent, SettingsModalComponent, DefinitionSelectionModalComponent],
 	styleUrls: ['./word-marker.page.style.sass']
 })
 export class WordMarkerPage {
 	ViewType = ViewType;
 	article: Article;
-
+	console = console;
 	constructor(router: Router, public articleService: ArticleService,
 	 cdr: ChangeDetectorRef, private perspective: PerspectiveService) {
 		console.log('!WordMarkerPage.constructor');

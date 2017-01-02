@@ -1,5 +1,9 @@
-<modal #modal>
-    <modal-header>
+<modal #modal
+ (window:hashchange)="windowHashChangeHandler()"
+ (onOpen)="modalOpenHandler()"
+ (onDismiss)="modalDismissHandler()"
+>
+    <modal-header [show-close]="true">
         <h4 class="modal-title">Possible meanings for word <b>{{dictionaryKey?.query}}</b></h4>
     </modal-header>
     <modal-body>

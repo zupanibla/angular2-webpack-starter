@@ -30,6 +30,20 @@ export class DefinitionSelectionModalComponent {
 		return this.onSelect.asObservable();
 	}
 
+	private HASH = '#definition-selection';
+	private isOpen = false;
+	private modalOpenHandler() {
+		this.isOpen = true;
+		window.location.hash = this.HASH;
+	}
+	private modalDismissHandler() {
+		this.isOpen = false;
+		if (window.location.hash == this.HASH) window.history.back();
+	}
+	private windowHashChangeHandler() {
+		if (window.location.hash != this.HASH && this.isOpen) this.modal.dismiss();
+	}
+
 	private select(wordNumber: number, usageNumber: number, meaningNumber: number) {
 		this.dictionaryKey = {query: this.dictionaryKey.query, wordNumber, usageNumber, meaningNumber}
 		this.onSelect.next(this.dictionaryKey);

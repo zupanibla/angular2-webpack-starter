@@ -66,7 +66,7 @@ const APP_PROVIDERS = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: false }),
     Ng2Bs3ModalModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

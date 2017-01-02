@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { MarkableWordComponent } from './../components/markable-word.component';
 
@@ -12,7 +12,7 @@ export class AdaptedMarkableWordComponent { // TODO nared al rxjs al pa direct
 	private content: string = '';
 	private marked: boolean = false;
 
-	public onMark: BehaviorSubject<boolean> = new BehaviorSubject(false);
+	public onMark: Subject<boolean> = new Subject<boolean>();
 	
 	constructor(private _cd: ChangeDetectorRef) {}
 	

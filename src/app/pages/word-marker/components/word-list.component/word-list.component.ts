@@ -17,7 +17,7 @@ import { WordListItemComponent } from './item.component';
 				></word-list-item>
 			</li>
 		</ul>
-		<definition-selection-modal (select)="handleSelection($event)" #ds></definition-selection-modal>
+		<definition-selection-modal #ds></definition-selection-modal>
 	`,
 	styleUrls: ['word-list.component.style.sass'],
 	directives: [WordListItemComponent, DefinitionSelectionModalComponent],

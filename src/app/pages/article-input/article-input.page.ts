@@ -8,33 +8,7 @@ import { PerspectiveService, ViewType } from './../../shared/services/perspectiv
 import { RtfInputComponent, RtfData } from './components/rtf-input.component';
 
 @Component({ // TODO lepsi template, prestav template
-	template: `
-	    <div class="container">
-	        <div class="col-md-3">
-	        </div>
-	        <div class="col-md-6" style="overflow: hidden;">
-	            <div class="main">
-	                <div class="page-header">
-	                    <h1 class="title" [class.mobile-view]="perspective.viewType === ViewType.MOBILE">
-	                    Članker<br>
-	                    <small class="subtitle">Word study made easy</small>
-	                    </h1>
-	                </div>
-	                <rtf-input (submit)="handleRtfInput($event)" (typingAttempt)="showHelp = true"></rtf-input>
-	                <br>
-					<div class="alert alert-info" *ngIf="showHelp">
-					Copy and paste text into the field (<strong>Ctrl + C</strong>, <strong>Ctrl + V</strong>)
-					</div>
-	            </div>
-	        </div>
-	        <div class="col-md-3">
-	        </div>
-	    </div>
-	    <footer>
-	        <a href="mailto:zupaniblaz@gmail.com">send feedback</a>
-	    </footer>
-	    <update-log-modal #updateLogModal></update-log-modal>
-	`,
+	templateUrl: './article-input.page.template.html',
 	styleUrls: ['article-input.page.style.sass'],
 	directives: [RtfInputComponent],
 	providers: [ArticleFactory]

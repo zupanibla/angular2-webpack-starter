@@ -6,7 +6,6 @@ import { ArticleFactory } from './factories/article.factory';
 import { PerspectiveService, ViewType } from './../../shared/services/perspective.service';
 
 import { RtfInputComponent, RtfData } from './components/rtf-input.component';
-import { UpdateLogModalComponent } from './components/update-log-modal.component';
 
 @Component({ // TODO lepsi template, prestav template
 	template: `
@@ -14,7 +13,7 @@ import { UpdateLogModalComponent } from './components/update-log-modal.component
 	        <div class="col-md-3">
 	        </div>
 	        <div class="col-md-6" style="overflow: hidden;">
-	            <div id="main">
+	            <div class="main">
 	                <div class="page-header">
 	                    <h1 class="title" [class.mobile-view]="perspective.viewType === ViewType.MOBILE">
 	                    Članker<br>
@@ -32,14 +31,12 @@ import { UpdateLogModalComponent } from './components/update-log-modal.component
 	        </div>
 	    </div>
 	    <footer>
-	        <a href="javascript:void(0)" (click)="updateLogModal.open()">what's new?</a>
-	        | 
 	        <a href="mailto:zupaniblaz@gmail.com">send feedback</a>
 	    </footer>
 	    <update-log-modal #updateLogModal></update-log-modal>
 	`,
 	styleUrls: ['article-input.page.style.sass'],
-	directives: [RtfInputComponent, UpdateLogModalComponent],
+	directives: [RtfInputComponent],
 	providers: [ArticleFactory]
 })
 export class ArticleInputPage {

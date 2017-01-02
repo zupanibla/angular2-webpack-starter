@@ -43,9 +43,7 @@ export class ArticleInputPage {
 	private ViewType = ViewType;
 
 	constructor(private router: Router, private articleFactory: ArticleFactory,
-	 private articleService: ArticleService, private perspective: PerspectiveService) {
-		console.log('!ArticleInputPage.constructor');
-	}
+	 private articleService: ArticleService, private perspective: PerspectiveService) {}
 
 	private handleRtfInput(rtf: RtfData) {
 		this.articleService.currentArticle = this.articleFactory.create(rtf.html);

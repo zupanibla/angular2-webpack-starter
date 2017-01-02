@@ -20,7 +20,6 @@ export class WordMarkerPage {
 
 	constructor(router: Router, public articleService: ArticleService,
 	 cdr: ChangeDetectorRef, private perspective: PerspectiveService) {
-		console.log('!WordMarkerPage.constructor');
 		if (!(this.article = articleService.currentArticle)) {
 			cdr.detach();
 			router.navigate(['/']);

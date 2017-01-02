@@ -13,7 +13,7 @@ import { MarkableWordFactory } from './../../factories/markable-word.factory';
 })
 export class ArticlePanelComponent {
 	@Input() set article(val) { this.displayArticle(val); }
-	@Output() wordClick: EventEmitter<{id: number, marked: boolean}> = new EventEmitter<any>();
+	@Output() wordToggle: EventEmitter<{id: number, marked: boolean}> = new EventEmitter<any>();
 
 	@ViewChild('articleContainer') articleContainer;
 	
@@ -31,7 +31,7 @@ export class ArticlePanelComponent {
 			markableWord.instance.onMark.subscribe(marked => {
 				if (marked) article.markedWordsIds.add(id);
 				else        article.markedWordsIds.remove(id);
-				this.wordClick.emit({id, marked});
+				this.wordToggle.emit({id, marked});
 			});
 			markableWords[id] = markableWord;
 		}

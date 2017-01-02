@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Article } from './../../shared/structures/article.structure';
@@ -28,8 +28,8 @@ import { DefinitionSelectionModalComponent } from './components/definition-selec
 	        <div class="col-md-8">
 	            <div id="main">
 					<article-panel [article]="article"
-					 (wordClick)="(perspective.viewType === ViewType.MOBILE && $event.marked) 
-					               ? definitionSelection.open(article.wordDefinitions[$event.id]) : false"
+					 (wordToggle)="(perspective.viewType === ViewType.MOBILE && $event.marked) 
+					               ? openDefinitionSelectionModal($event.id) : false"
 					 ></article-panel>
 	            </div>
 	        </div>
@@ -39,13 +39,13 @@ import { DefinitionSelectionModalComponent } from './components/definition-selec
 	        	>
 					<word-list
 					 [words]="markedWords"
-					 (wordDefinitionSelect)="handleDefinitionSelect($event)"
-					 (wordDelete)="handleWordDelete($event)"
+					 (wordClick)="openDefinitionSelectionModal($event.id)"
+					 (wordDelete)="articleService.unmarkWord($event.id)"
 					></word-list>
 				</div>
 	        </div>
 	    </div>
-	    <definition-selection-modal #definitionSelection></definition-selection-modal>
+	    <definition-selection-modal #definitionSelectionModal></definition-selection-modal>
 	`,
 	directives: [ArticlePanelComponent, WordListComponent, SettingsModalComponent, DefinitionSelectionModalComponent],
 	styleUrls: ['./word-marker.page.style.sass']
@@ -63,6 +63,12 @@ export class WordMarkerPage {
 		}
 	}
 
+	@ViewChild('definitionSelectionModal') definitionSelectionModal;
+	private openDefinitionSelectionModal(wordId: number) {
+		this.definitionSelectionModal.open(this.article.wordDefinitions[wordId]).subscribe(dictionaryKey => {
+			this.article.wordDefinitions[wordId] = dictionaryKey;
+		});
+	}
 	// TODO: ARTICLE PANEL ?
 
 	// MARKED WORDS LIST
@@ -71,14 +77,8 @@ export class WordMarkerPage {
 			return { wordId, dictionaryKey: this.article.wordDefinitions[wordId]}
 		});
 	}
-	private handleDefinitionSelect(e) {
-		this.articleService.defineWord(e.wordId, e.dictionaryKey);
-	}
-	private handleWordDelete(e) {
-		this.articleService.unmarkWord(e);
-	}
 
-	private printArticle(e) {
+	private printArticle() {
 		window.print();
 	}
 }

@@ -31,8 +31,7 @@ export class WordListItemComponent {
 
 	constructor(private dictionary: DictionaryService) {}
 
-	ngOnInit() {
-		console.log('A');
+	ngOnInit() { // TODO prevec updateov
 		this.dictionary.getEntry(this.dictionaryKey.query).subscribe(data => { this.dictionaryEntry = data; });
 	}
 

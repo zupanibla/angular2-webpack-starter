@@ -29,7 +29,7 @@ export class RtfInputComponent {
 		setTimeout(() => { this.inputField.nativeElement.focus(); }, 1);
 	}
 
-	iePasteHandler(e: ClipboardEvent) {
+	private iePasteHandler(e: ClipboardEvent) {
 		this.contentEditableDiv.nativeElement.focus();
 		setTimeout(	() => {
 			if (this.contentEditableDiv.nativeElement.innerHTML) {
@@ -45,7 +45,7 @@ export class RtfInputComponent {
 		e.preventDefault();
 	}
 
-	defaultPasteHandler(e: ClipboardEvent) {
+	private defaultPasteHandler(e: ClipboardEvent) {
 		let html = e.clipboardData.getData('text/html') ||
 		 '<p>' + e.clipboardData.getData('text').replace(/(?:\r\n|\r|\n)/g, '<br />') + '</p>';
 		let text = e.clipboardData.getData('text');
@@ -53,9 +53,10 @@ export class RtfInputComponent {
 		e.preventDefault();
 	}
 
-	keydownHandler(e: KeyboardEvent) {
+	private keydownHandler(e: KeyboardEvent) {
 		if (!e.ctrlKey && e.keyCode != 91) {
 			e.preventDefault();
+			this.inputField.nativeElement.value = '';
 			this.typingAttempt.emit(true); // TODO
 		}
 	}

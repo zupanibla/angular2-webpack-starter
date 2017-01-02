@@ -2,7 +2,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-left: 10px;
+  margin-left: -10px;
+  margin-top:  -10px;
 }
 .spinner span {
   display: block;

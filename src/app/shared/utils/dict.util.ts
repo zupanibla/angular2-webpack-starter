@@ -21,7 +21,7 @@ export class Dict<K, V> {
 		this._onChange.next({key, exists: false});
 	}
 
-	has(key: V): boolean {
+	has(key: K): boolean {
 		return Object.prototype.hasOwnProperty.call(this.store, key);
 	}
 

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { HashMap } from './../../../shared/utils/hash-map.util';
+import { Dict } from './../../../shared/utils/dict.util';
 import { DictionaryKey } from './../../../shared/structures/dictionary-key.structure';
 import { DictionaryAjaxRequestsService } from './../services/dictionary-ajax-requests.service';
 import { Word } from './../structures/word.structure';
 
 @Injectable()
 export class DictionaryService {
-	words: HashMap<string, Observable<DictionaryEntry>> = new HashMap<string, Observable<DictionaryEntry>>();
+	words: Dict<string, Observable<DictionaryEntry>> = new Dict<string, Observable<DictionaryEntry>>();
 
 	constructor(private dictionaryAjaxRequests: DictionaryAjaxRequestsService) {}
 
@@ -23,8 +23,8 @@ export class DictionaryService {
 
 	private loadEntry(query: string) {
 		this.dictionaryAjaxRequests.requestGetWordsByQuery(query).subscribe(
-			data => { this.words.get(query).next({ data, state: DictionaryEntryState.READY }); },
-			()   => { this.words.get(query).next({ data: null, state: DictionaryEntryState.FAILURE })}
+			data => { this.words.get(query).next({ data, 	   state: DictionaryEntryState.READY   }); },
+			()   => { this.words.get(query).next({ data: null, state: DictionaryEntryState.FAILURE }); }
 		);
 	}
 

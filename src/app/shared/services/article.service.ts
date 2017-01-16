@@ -7,10 +7,10 @@ export class ArticleService {
 	public currentArticle: Article = null;
 
 	defineWord(wordId: number, dictionaryKey: DictionaryKey) {	
-		this.currentArticle.wordDefinitions[wordId] = dictionaryKey;
+		this.currentArticle.definedWords.set(wordId, dictionaryKey);
 	}
 
-	unmarkWord(wordId: number) {
-		this.currentArticle.markedWordsIds.remove(wordId);
+	undefineWord(wordId: number) {
+		this.currentArticle.definedWords.remove(wordId);
 	}
 }

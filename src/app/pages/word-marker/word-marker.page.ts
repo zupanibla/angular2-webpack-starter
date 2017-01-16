@@ -28,15 +28,13 @@ export class WordMarkerPage {
 
 	@ViewChild('definitionSelectionModal') definitionSelectionModal;
 	private openDefinitionSelectionModal(wordId: number) {
-		this.definitionSelectionModal.open(this.article.wordDefinitions[wordId]).subscribe(dictionaryKey => {
-			this.article.wordDefinitions[wordId] = dictionaryKey;
+		this.definitionSelectionModal.open(this.article.definedWords.get(wordId)).subscribe(dictionaryKey => {
+			this.article.definedWords.set(wordId, dictionaryKey);
 		});
 	}
 	
 	private get markedWords() {
-		return this.article.markedWordsIds.toArray().map(str=>parseInt(str)).map(wordId => {
-			return { wordId, dictionaryKey: this.article.wordDefinitions[wordId]}
-		});
+		return this.article.definedWords.items().map(item => ({ wordId: item.key, dictionaryKey: item.value}));
 	}
 
 	private printArticle() {

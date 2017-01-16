@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Article } from './../../../shared/structures/article.structure';
 import { DOMNodeArticlifier } from './../tools/dom-node-articlifier.tool';
-import { Set } from './../../../shared/utils/set.util';
-import { HashMap } from './../../../shared/utils/hash-map.util';
+import { Dict } from './../../../shared/utils/dict.util';
 
 @Injectable()
 export class ArticleFactory {
@@ -23,13 +22,7 @@ export class ArticleFactory {
 
 		return {
 			template: articlified.htmlElement.innerHTML,
-			markedWordsIds: new Set(),
-			wordDefinitions: articlified.wordContainers.map(container => ({
-				query: container.innerHTML,
-				wordNumber: 0,
-				usageNumber: 0,
-				meaningNumber: 0
-			}))
+			definedWords: new Dict<any, any>()
 		};
 	}
 

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { Article } from './../../../../shared/structures/article.structure';
+import { DictionaryKey } from './../../../../shared/structures/dictionary-key.structure';
 import { MarkableWordFactory } from './../../factories/markable-word.factory';
 
 @Component({
@@ -13,7 +14,8 @@ import { MarkableWordFactory } from './../../factories/markable-word.factory';
 })
 export class ArticlePanelComponent {
 	@Input() set article(val) { this.displayArticle(val); }
-	@Output() wordToggle: EventEmitter<{id: number, marked: boolean}> = new EventEmitter<any>();
+	@Output() wordMark:   EventEmitter<{id: number, dictionaryKey: DictionaryKey}> = new EventEmitter<any>();
+	@Output() wordUnmark: EventEmitter<{id: number}> = new EventEmitter<any>();
 
 	@ViewChild('articleContainer') articleContainer;
 	
@@ -24,20 +26,21 @@ export class ArticlePanelComponent {
 		htmlElement.innerHTML = article.template;
 		let wordContainers    = htmlElement.querySelectorAll('[data-word]');
 
-		let markableWords = {};
+		let markableWords = {}
 		for (let wordContainer of (<any>wordContainers)) {
+			let dictionaryKey: DictionaryKey =
+				{query: wordContainer.innerHTML, wordNumber: 0, usageNumber: 0, meaningNumber: 0}; // TODO ta {}
 			let id           = wordContainer.dataset['wordId'];
 			let markableWord = this.mwf.create(wordContainer);
 			markableWord.instance.onMark.subscribe(marked => {
-				if (marked) article.markedWordsIds.add(id);
-				else        article.markedWordsIds.remove(id);
-				this.wordToggle.emit({id, marked});
+				if (marked) this.wordMark.emit({id, dictionaryKey});
+				else        this.wordUnmark.emit({id});
 			});
 			markableWords[id] = markableWord;
 		}
 
-		article.markedWordsIds.onChange.subscribe(val => {
-			markableWords[val.element].instance.setMarked(val.exists);
+		article.definedWords.onChange.subscribe(e => {
+			markableWords[e.key].instance.setMarked(e.exists);
 		});
 		this.articleContainer.nativeElement.appendChild(htmlElement);
 	}

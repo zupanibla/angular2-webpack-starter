@@ -11,7 +11,7 @@ import { Word } from './../../structures/word.structure';
 	templateUrl: 'definition-selection-modal.component.template.html',
 	styleUrls: ['definition-selection-modal.component.style.sass']
 })
-export class DefinitionSelectionModalComponent {
+export class DefinitionSelectionModalComponent { // TODO nared abstrakcijo modala z <- handlerji
 	private dictionaryKey: DictionaryKey;
 	private onSelect: BehaviorSubject<DictionaryKey>;
 	private words: Array<Word> = [];

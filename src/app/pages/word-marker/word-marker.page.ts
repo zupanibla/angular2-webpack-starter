@@ -6,7 +6,7 @@ import { ArticlePanelComponent } from './components/article-panel.component';
 import { ArticleService } from './../../shared/services/article.service';
 import { WordListComponent } from './components/word-list.component';
 import { SettingsModalComponent } from './components/settings-modal.component';
-import { PerspectiveService, ViewType } from './../../shared/services/perspective.service';
+import { ViewSizeService, Size } from './../../shared/services/view-size.service';
 import { DefinitionSelectionModalComponent } from './components/definition-selection-modal.component';
 
 @Component({
@@ -15,11 +15,11 @@ import { DefinitionSelectionModalComponent } from './components/definition-selec
 	styleUrls: ['./word-marker.page.style.sass']
 })
 export class WordMarkerPage {
-	ViewType = ViewType;
+	Size = Size;
 	article: Article;
 
 	constructor(router: Router, public articleService: ArticleService,
-	 cdr: ChangeDetectorRef, private perspective: PerspectiveService) {
+	 cdr: ChangeDetectorRef, private view: ViewSizeService) {
 		if (!(this.article = articleService.currentArticle)) {
 			cdr.detach();
 			router.navigate(['/']);

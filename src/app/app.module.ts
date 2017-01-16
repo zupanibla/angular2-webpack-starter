@@ -23,7 +23,7 @@ import { WordMarkerPage }   from './pages/word-marker';
 // SHARED SERVICES
 import { AjaxRequestsService } from './shared/services/ajax-requests.service';
 import { ArticleService } from './shared/services/article.service';
-import { PerspectiveService } from './shared/services/perspective.service';
+import { ViewSizeService } from './shared/services/view-size.service';
 
 // PAGE: ARTICLE-INPUT
 import { DOMNodeArticlifier } from './pages/article-input/tools/dom-node-articlifier.tool';
@@ -43,7 +43,7 @@ import { DictionaryAjaxRequestsService } from
 const APP_PROVIDERS = [
   ArticleService,
   AjaxRequestsService,
-  PerspectiveService,
+  ViewSizeService,
   DictionaryService,
   SettingsService,
   DictionaryAjaxRequestsService,

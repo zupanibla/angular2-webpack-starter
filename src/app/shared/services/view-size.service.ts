@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class PerspectiveService {
-	windowWidth: number = this._windowWidth;
-	viewType: ViewType  = this._viewType;
+export class ViewSizeService { // TODO causes too many change detections
+	width: number = this._width;
+	size: Size    = this._size;
 
 	constructor() {
 		window.addEventListener('resize', () => {
-			this.windowWidth = this._viewType;
-			this.viewType    = this._viewType;
+			this.width   = this._size;
+			this.size    = this._size;
 		});
 	}
 
-	private get _windowWidth () {
+	private get _width () {
 		return Math.max(
 			document.documentElement['clientWidth'],
 			document.documentElement['scrollWidth'],
@@ -23,12 +23,12 @@ export class PerspectiveService {
 		);
 	}
 
-	private get _viewType () {
-		return (this._windowWidth > 992) ? ViewType.DESKTOP : ((this._windowWidth > 321) ? ViewType.TABLET : ViewType.MOBILE);
+	private get _size () {
+		return (this._width > 992) ? Size.DESKTOP : ((this._width > 321) ? Size.TABLET : Size.MOBILE);
 	}
 
 }
 
-export enum ViewType {
+export enum Size {
 	MOBILE, TABLET, DESKTOP
 }

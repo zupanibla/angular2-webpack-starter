@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ViewSizeService { // TODO causes too many change detections
-	width: number = this._width;
-	size: Size    = this._size;
+	size: Size = this._size;
 
 	constructor() {
 		window.addEventListener('resize', () => {
-			this.width   = this._size;
-			this.size    = this._size;
+			this.size = this._size;
 		});
 	}
 
-	private get _width () {
+	private get width () {
 		return Math.max(
 			document.documentElement['clientWidth'],
 			document.documentElement['scrollWidth'],
@@ -24,11 +22,11 @@ export class ViewSizeService { // TODO causes too many change detections
 	}
 
 	private get _size () {
-		return (this._width > 992) ? Size.DESKTOP : ((this._width > 321) ? Size.TABLET : Size.MOBILE);
+		return Object.keys(Size).map(key => Size[key]).find(width => (width > this.width));
 	}
 
 }
 
 export enum Size {
-	MOBILE, TABLET, DESKTOP
+	SMALL_PHONE = 322, PHONE = 480, SMALL_TABLET = 768, TABLET = 992, DESKTOP = 99999
 }

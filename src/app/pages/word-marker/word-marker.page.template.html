@@ -1,14 +1,18 @@
 <div class="container">
     <div class="col-md-2">
-    	<div class="menu-wrapper" [class.affix]="view.size === Size.DESKTOP">
+    	<div class="menu-wrapper">
 	        <div class="menu">
-	        	<a href="javascript:void(0)" (click)="settingsModal.open()" class="menu-item">
-	        		<i class="fa fa-cog fa-3x"></i>
-	        	</a>
-	        	<a href="javascript:void(0)" (click)="printArticle()" class="menu-item">
-	        		<i class="fa fa-print fa-3x"></i>
-	        	</a>
-	        	<settings-modal #settingsModal></settings-modal>
+	        	<span class="menu-item-wrapper">
+	        		<a href="javascript:void(0)" (click)="settingsModal.open()" class="menu-item">
+	        			<i class="fa fa-cog fa-3x"></i>
+	        		</a>
+	        	</span>
+	        	
+	        	<span class="menu-item-wrapper">
+		        	<a href="javascript:void(0)" (click)="printArticle()" class="menu-item">
+		        		<i class="fa fa-print fa-3x"></i>
+		        	</a>
+	        	</span>
 	        </div>
         </div>
     </div>
@@ -17,7 +21,7 @@
 			<article-panel [article]="article"
 			 (wordMark)="
 			 	article.definedWords.set($event.id, $event.dictionaryKey);
-			 	(view.size === Size.MOBILE) ?
+			 	(view.size <= Size.TABLET) ?
 			 		openDefinitionSelectionModal($event.id) : false;
 			 "
 			 (wordUnmark)="article.definedWords.remove($event.id)"
@@ -26,7 +30,7 @@
     </div>
     <div class="col-md-2 word-list-col">
     	<div class="word-list-wrapper"
-    	 [class.affix]="view.size === Size.DESKTOP"
+    	 [class.desktop]="view.size === Size.DESKTOP"
     	>
 			<word-list
 			 [words]="markedWords"
@@ -36,4 +40,5 @@
 		</div>
     </div>
 </div>
+<settings-modal #settingsModal></settings-modal>
 <definition-selection-modal #definitionSelectionModal></definition-selection-modal>
